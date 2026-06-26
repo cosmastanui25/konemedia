@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>KONE-MEDIA Africa — Industry expert knowledge, shared.</title>
+<meta name="description" content="News and analysis from across Kenya, Africa and the world.">
+<link rel="icon" type="image/png" href="assets/konemedia.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;1,500;1,600;1,700&display=swap" rel="stylesheet">
+
+<!-- ============================================================= -->
+<!--  KONE-MEDIA Africa  ·  static front-end                       -->
+<!--                                                               -->
+<!--  TO CONNECT WORDPRESS: open this file, find the CONFIG block  -->
+<!--  in the <script> near the bottom, and paste your site URL.    -->
+<!--  Leave it blank to keep showing the sample articles.          -->
+<!-- ============================================================= -->
+
+<style>
+:root{
+  --blue:#14479B;
+  --orange:#F26B1D;
+  --orange-bright:#FF9A4D;
+  --cream:#F3EEE3;
+  --panel:#FBF8F1;
+  --ink:#1A1A18;
+  --ink2:#26241F;
+  --ink3:#3D3A33;
+  --muted:#8A8478;
+  --muted2:#9A9488;
+  --line:#DBD4C4;
+  --line2:#E3DDCF;
+  --line3:#E8E2D4;
+  --dark:#171B22;
+  --serif:'Lora',Georgia,serif;
+  --display:'Playfair Display',Georgia,serif;
+}
+*{ box-sizing:border-box; }
+html,body{ margin:0; padding:0; }
+body{ background:var(--cream); color:var(--ink); font-family:var(--serif); -webkit-font-smoothing:antialiased; }
+img{ display:block; max-width:100%; }
+a{ color:inherit; }
+::selection{ background:var(--orange); color:#fff; }
+.wrap{ max-width:1320px; margin:0 auto; padding-left:32px; padding-right:32px; }
+
+/* ---------- header ---------- */
+.site-head{ padding-top:22px; }
+.head-row{ display:flex; align-items:center; justify-content:space-between; gap:16px; }
+.icon-cluster{ display:flex; gap:8px; }
+.icon-btn{ width:34px; height:34px; border:none; display:flex; align-items:center; justify-content:center; border-radius:3px; cursor:pointer; background:var(--orange); }
+.icon-btn.is-blue{ background:var(--blue); }
+.brand{ display:flex; flex-direction:column; align-items:center; text-decoration:none; cursor:pointer; flex:0 1 auto; min-width:0; }
+.brand img{ height:54px; width:auto; }
+.brand .tagline{ margin-top:6px; font-family:var(--serif); font-style:italic; color:var(--orange); font-size:14px; letter-spacing:.3px; text-align:center; }
+
+.site-nav{ margin-top:20px; border-top:1.5px solid var(--blue); border-bottom:1.5px solid var(--blue); padding:11px 0; }
+.site-nav ul{ list-style:none; margin:0; padding:0; display:flex; flex-wrap:wrap; justify-content:center; gap:28px; }
+.site-nav a{ font-family:var(--serif); font-weight:600; font-size:15px; letter-spacing:.4px; color:var(--blue); text-decoration:none; text-transform:uppercase; cursor:pointer; transition:color .15s; }
+.site-nav a:hover{ color:var(--orange); }
+
+/* ---------- home grid ---------- */
+.home-grid{ display:grid; grid-template-columns:minmax(0,1.55fr) minmax(0,1fr) 300px; gap:40px; align-items:start; padding-top:30px; }
+
+.cover-link{ display:block; text-decoration:none; color:inherit; cursor:pointer; }
+.cover-imgwrap{ position:relative; overflow:hidden; }
+.cover-imgwrap img{ width:100%; height:360px; object-fit:cover; transition:transform .4s ease; }
+.cover-link:hover .cover-imgwrap img{ transform:scale(1.03); }
+.badge{ position:absolute; top:14px; left:14px; background:var(--orange); color:#fff; font-family:var(--serif); font-weight:600; font-size:12px; letter-spacing:1px; text-transform:uppercase; padding:5px 11px; border-radius:2px; }
+.cover-title{ font-family:var(--display); font-weight:700; font-size:clamp(24px,3.4vw,30px); line-height:1.15; margin:18px 0 8px; color:var(--ink); }
+.dateline{ font-family:var(--serif); font-style:italic; color:var(--muted); font-size:14px; margin-bottom:10px; }
+.cover-excerpt{ font-family:var(--serif); font-size:16.5px; line-height:1.6; color:var(--ink3); margin:0; }
+
+.story-link{ display:flex; gap:16px; text-decoration:none; color:inherit; cursor:pointer; padding-bottom:20px; margin-bottom:20px; border-bottom:1px solid var(--line); }
+.story-link img{ width:120px; height:96px; object-fit:cover; flex:0 0 auto; }
+.story-link h3{ font-family:var(--display); font-weight:700; font-size:18px; line-height:1.2; margin:0 0 6px; color:var(--ink); transition:color .15s; }
+.story-link:hover h3{ color:var(--blue); }
+.story-link .dl{ font-family:var(--serif); font-style:italic; color:var(--muted); font-size:12.5px; margin-bottom:6px; }
+.story-link p{ font-family:var(--serif); font-size:13.5px; line-height:1.5; color:#5C584F; margin:0; }
+
+.side-block{ margin-bottom:30px; }
+.side-head{ display:flex; align-items:baseline; justify-content:space-between; border-bottom:2px solid var(--blue); padding-bottom:6px; margin-bottom:14px; }
+.side-head h3{ font-family:var(--display); font-style:italic; font-weight:700; font-size:21px; margin:0; color:var(--blue); }
+.side-more{ font-family:var(--serif); font-size:11px; letter-spacing:.5px; text-transform:uppercase; color:var(--orange); text-decoration:none; cursor:pointer; }
+.side-link{ display:flex; gap:11px; text-decoration:none; color:inherit; cursor:pointer; margin-bottom:13px; padding-bottom:13px; border-bottom:1px solid var(--line2); }
+.side-link img{ width:60px; height:54px; object-fit:cover; flex:0 0 auto; }
+.side-link h4{ font-family:var(--serif); font-weight:600; font-size:13.5px; line-height:1.25; margin:0 0 4px; color:var(--ink); transition:color .15s; }
+.side-link:hover h4{ color:var(--blue); }
+.side-link .dl{ font-family:var(--serif); font-style:italic; color:var(--muted2); font-size:11px; }
+
+/* ---------- featured ---------- */
+.section{ margin-top:54px; }
+.featured-title{ font-family:var(--display); font-style:italic; font-weight:700; font-size:clamp(30px,5vw,46px); margin:0 0 26px; color:var(--ink); }
+.featured-grid{ display:grid; grid-template-columns:repeat(5,1fr); gap:18px; }
+.feat-card{ position:relative; display:block; height:340px; overflow:hidden; text-decoration:none; cursor:pointer; border-radius:2px; }
+.feat-card img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; transition:transform .45s ease; }
+.feat-card:hover img{ transform:scale(1.05); }
+.feat-card .scrim{ position:absolute; inset:0; background:linear-gradient(to top, rgba(15,32,68,.92) 0%, rgba(15,32,68,.55) 42%, rgba(15,32,68,0) 70%); }
+.feat-card .cap{ position:absolute; left:0; right:0; bottom:0; padding:16px; }
+.feat-card .eyebrow{ font-family:var(--serif); font-weight:600; font-size:11px; letter-spacing:1px; text-transform:uppercase; color:var(--orange-bright); }
+.feat-card h3{ font-family:var(--display); font-weight:700; font-size:18px; line-height:1.2; margin:7px 0 9px; color:#fff; }
+.feat-card .dl{ font-family:var(--serif); font-style:italic; font-size:12px; color:#C9D2E2; }
+
+/* ---------- trending ---------- */
+.trending{ margin-top:54px; background:var(--panel); border:1px solid var(--line2); padding:30px 34px; }
+.trend-head{ display:flex; align-items:baseline; gap:14px; flex-wrap:wrap; border-bottom:2px solid var(--orange); padding-bottom:12px; margin-bottom:22px; }
+.trend-head h2{ font-family:var(--display); font-style:italic; font-weight:700; font-size:clamp(24px,4vw,30px); margin:0; color:var(--ink); }
+.trend-head .sub{ font-family:var(--serif); font-weight:600; letter-spacing:1.5px; text-transform:uppercase; font-size:12px; color:var(--orange); }
+.trend-grid{ display:grid; grid-template-columns:1fr 1fr; gap:8px 50px; }
+.trend-link{ display:flex; align-items:center; gap:18px; text-decoration:none; color:inherit; cursor:pointer; padding:13px 0; border-bottom:1px solid var(--line3); }
+.trend-link .rank{ font-family:var(--display); font-weight:800; font-size:34px; color:var(--blue); min-width:46px; line-height:1; }
+.trend-link .eyebrow{ font-family:var(--serif); font-weight:600; font-size:10.5px; letter-spacing:1px; text-transform:uppercase; color:var(--orange); }
+.trend-link h4{ font-family:var(--serif); font-weight:600; font-size:15px; line-height:1.3; margin:3px 0 0; color:var(--ink); transition:color .15s; }
+.trend-link:hover h4{ color:var(--blue); }
+
+/* ---------- article ---------- */
+.backlink{ font-family:var(--serif); font-size:13px; letter-spacing:.5px; text-transform:uppercase; color:var(--orange); text-decoration:none; cursor:pointer; }
+.article-grid{ display:grid; grid-template-columns:minmax(0,1fr) 320px; gap:54px; align-items:start; margin-top:18px; }
+.article-body{ max-width:760px; }
+.art-eyebrow{ font-family:var(--serif); font-weight:600; font-size:12px; letter-spacing:1.5px; text-transform:uppercase; color:var(--blue); }
+.art-title{ font-family:var(--display); font-weight:800; font-size:clamp(28px,6vw,42px); line-height:1.12; margin:12px 0 16px; color:#161616; }
+.art-meta{ display:flex; align-items:center; flex-wrap:wrap; gap:14px; font-family:var(--serif); font-size:14px; color:#6B6760; border-bottom:1px solid var(--line); padding-bottom:16px; margin-bottom:24px; }
+.art-meta .by{ font-weight:600; color:var(--ink); }
+.art-meta .sep{ color:#C9C2B2; }
+.art-cover{ width:100%; height:430px; object-fit:cover; margin-bottom:8px; }
+.art-caption{ font-family:var(--serif); font-style:italic; font-size:13px; color:var(--muted2); margin-bottom:26px; }
+.art-content p{ font-family:var(--serif); font-size:18px; line-height:1.72; color:var(--ink2); margin:0 0 22px; }
+.art-content h2,.art-content h3{ font-family:var(--display); color:var(--ink); line-height:1.2; }
+.art-content img{ width:100%; height:auto; margin:8px 0 22px; }
+.art-content blockquote{ border-left:3px solid var(--orange); margin:0 0 22px; padding:4px 0 4px 20px; font-style:italic; color:var(--ink2); font-size:19px; }
+.art-content ul,.art-content ol{ font-size:18px; line-height:1.72; color:var(--ink2); margin:0 0 22px; padding-left:22px; }
+.art-content a{ color:var(--blue); }
+.share-row{ border-top:1px solid var(--line); margin-top:14px; padding-top:18px; display:flex; gap:10px; align-items:center; }
+.share-row .lbl{ font-family:var(--serif); font-size:13px; color:#6B6760; }
+.share-ico{ width:30px; height:30px; border-radius:3px; display:inline-flex; align-items:center; justify-content:center; text-decoration:none; }
+
+.rel-head{ border-bottom:2px solid var(--blue); padding-bottom:6px; margin-bottom:14px; }
+.rel-head h3{ font-family:var(--display); font-style:italic; font-weight:700; font-size:21px; margin:0; color:var(--blue); }
+.rel-link{ display:flex; gap:12px; text-decoration:none; color:inherit; cursor:pointer; margin-bottom:15px; padding-bottom:15px; border-bottom:1px solid var(--line2); }
+.rel-link img{ width:74px; height:62px; object-fit:cover; flex:0 0 auto; }
+.rel-link h4{ font-family:var(--serif); font-weight:600; font-size:14px; line-height:1.25; margin:0 0 5px; color:var(--ink); transition:color .15s; }
+.rel-link:hover h4{ color:var(--blue); }
+.rel-link .dl{ font-family:var(--serif); font-style:italic; color:var(--muted2); font-size:11px; }
+.signup{ margin-top:24px; background:var(--blue); padding:24px 22px; border-radius:2px; }
+.signup h3{ font-family:var(--display); font-weight:700; font-size:20px; margin:0 0 8px; color:#fff; }
+.signup p{ font-family:var(--serif); font-size:13.5px; line-height:1.5; color:#C9D2E2; margin:0 0 14px; }
+.signup .field{ display:flex; gap:8px; }
+.signup input{ flex:1; min-width:0; border:none; padding:9px 11px; font-family:var(--serif); font-size:13px; border-radius:2px; }
+.signup button{ background:var(--orange); color:#fff; border:none; font-family:var(--serif); font-weight:600; font-size:13px; padding:9px 14px; border-radius:2px; cursor:pointer; }
+.signup .note{ font-family:var(--serif); font-size:12.5px; color:#C9D2E2; margin:12px 0 0; }
+
+/* ---------- category ---------- */
+.cat-head{ border-bottom:2px solid var(--blue); padding-bottom:16px; margin-bottom:30px; }
+.cat-head .eyebrow{ font-family:var(--serif); font-size:12px; letter-spacing:1.5px; text-transform:uppercase; color:var(--orange); }
+.cat-head h1{ font-family:var(--display); font-style:italic; font-weight:800; font-size:clamp(34px,8vw,52px); margin:6px 0; color:#161616; }
+.cat-head p{ font-family:var(--serif); font-size:16px; line-height:1.55; color:#5C584F; margin:0; max-width:640px; }
+.cat-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:30px 28px; }
+.cat-card{ display:block; text-decoration:none; color:inherit; cursor:pointer; }
+.cat-card img{ width:100%; height:200px; object-fit:cover; margin-bottom:14px; }
+.cat-card .eyebrow{ font-family:var(--serif); font-weight:600; font-size:11px; letter-spacing:1px; text-transform:uppercase; color:var(--blue); }
+.cat-card h3{ font-family:var(--display); font-weight:700; font-size:22px; line-height:1.2; margin:7px 0 9px; color:var(--ink); transition:color .15s; }
+.cat-card:hover h3{ color:var(--blue); }
+.cat-card .dl{ font-family:var(--serif); font-style:italic; color:var(--muted2); font-size:13px; margin-bottom:9px; }
+.cat-card p{ font-family:var(--serif); font-size:14.5px; line-height:1.55; color:#5C584F; margin:0; }
+
+/* ---------- footer ---------- */
+.site-foot{ background:var(--dark); margin-top:64px; padding:46px 32px 30px; }
+.foot-inner{ max-width:1320px; margin:0 auto; }
+.foot-top{ display:flex; flex-wrap:wrap; gap:30px; justify-content:space-between; align-items:flex-start; border-bottom:1px solid #2B313B; padding-bottom:30px; }
+.foot-brand{ max-width:300px; }
+.foot-wordmark{ font-family:Arial,Helvetica,sans-serif; font-weight:800; font-size:26px; letter-spacing:.5px; line-height:1; margin-bottom:6px; }
+.foot-wordmark .k{ color:#fff; }
+.foot-wordmark .a{ color:var(--orange); }
+.foot-brand .africa{ font-family:Arial,Helvetica,sans-serif; font-weight:700; letter-spacing:7px; font-size:13px; color:var(--orange); margin-bottom:14px; }
+.foot-brand p{ font-family:var(--serif); font-size:14px; line-height:1.6; color:#9AA1AD; margin:0; }
+.foot-col h4{ font-family:var(--serif); font-weight:600; font-size:13px; letter-spacing:1px; text-transform:uppercase; color:var(--orange); margin:0 0 14px; }
+.foot-sections{ list-style:none; margin:0; padding:0; display:grid; grid-template-columns:1fr 1fr; gap:9px 26px; }
+.foot-sections a{ font-family:var(--serif); font-size:14px; color:#C7CDD7; text-decoration:none; cursor:pointer; transition:color .15s; }
+.foot-sections a:hover{ color:#fff; }
+.foot-contact{ font-family:var(--serif); font-size:14px; line-height:1.7; color:#C7CDD7; }
+.foot-contact .addr{ margin-top:8px; color:#9AA1AD; }
+.foot-social{ display:flex; gap:8px; margin-top:16px; }
+.foot-social a{ width:32px; height:32px; background:var(--orange); display:flex; align-items:center; justify-content:center; border-radius:3px; }
+.foot-bottom{ font-family:var(--serif); font-size:12.5px; color:#7B8290; text-align:center; padding-top:22px; }
+
+/* ---------- loading / empty ---------- */
+.state{ text-align:center; padding:90px 20px; font-family:var(--serif); color:var(--muted); }
+.state .spinner{ width:34px; height:34px; border:3px solid var(--line); border-top-color:var(--orange); border-radius:50%; margin:0 auto 16px; animation:spin .8s linear infinite; }
+@keyframes spin{ to{ transform:rotate(360deg); } }
+
+/* ---------- responsive ---------- */
+@media (max-width:1100px){
+  .featured-grid{ grid-template-columns:repeat(3,1fr); }
+}
+@media (max-width:980px){
+  .home-grid{ grid-template-columns:1fr; gap:34px; }
+  .article-grid{ grid-template-columns:1fr; gap:36px; }
+  .cover-imgwrap img{ height:300px; }
+}
+@media (max-width:760px){
+  .wrap{ padding-left:18px; padding-right:18px; }
+  .site-foot{ padding-left:18px; padding-right:18px; }
+  .brand img{ height:42px; }
+  .brand .tagline{ font-size:12px; }
+  .site-nav{ overflow-x:auto; -webkit-overflow-scrolling:touch; }
+  .site-nav ul{ flex-wrap:nowrap; justify-content:flex-start; gap:20px; }
+  .site-nav a{ white-space:nowrap; }
+  .featured-grid{ grid-template-columns:repeat(2,1fr); }
+  .feat-card{ height:300px; }
+  .trend-grid{ grid-template-columns:1fr; gap:0 0; }
+  .cat-grid{ grid-template-columns:repeat(2,1fr); gap:26px 20px; }
+  .trending{ padding:24px 20px; }
+  .art-cover{ height:260px; }
+}
+@media (max-width:560px){
+  .icon-cluster.left{ display:none; }   /* keep the bar clean on phones */
+  .head-row{ justify-content:space-between; }
+  .featured-grid{ grid-template-columns:1fr; }
+  .feat-card{ height:260px; }
+  .cat-grid{ grid-template-columns:1fr; }
+  .story-link img{ width:96px; height:78px; }
+}
+@media (prefers-reduced-motion:reduce){
+  *{ animation:none !important; transition:none !important; }
+}
+</style>
+</head>
+<body>
+
+<!-- ===================== HEADER ===================== -->
+<header class="site-head">
+  <div class="wrap">
+    <div class="head-row">
+      <div class="icon-cluster left">
+        <a class="icon-btn" href="#" title="Facebook" aria-label="Facebook"><svg width="16" height="16" viewBox="0 0 24 24" fill="#fff"><path d="M13.5 21v-8h2.7l.4-3.1h-3.1V7.9c0-.9.25-1.5 1.5-1.5h1.6V3.6c-.28-.04-1.24-.12-2.36-.12-2.33 0-3.93 1.42-3.93 4.04v2.25H7v3.1h2.81V21z"/></svg></a>
+        <a class="icon-btn" href="#" title="YouTube" aria-label="YouTube"><svg width="16" height="16" viewBox="0 0 24 24" fill="#fff"><path d="M21.6 7.2s-.2-1.4-.8-2c-.76-.8-1.6-.8-2-.85C16 4.1 12 4.1 12 4.1h-.02s-4 0-6.8.25c-.4.05-1.24.05-2 .85-.6.6-.8 2-.8 2S2 8.8 2 10.5v1.6c0 1.7.2 3.3.2 3.3s.2 1.4.8 2c.76.8 1.76.78 2.2.86 1.6.16 6.8.2 6.8.2s4 0 6.8-.26c.4-.05 1.24-.05 2-.85.6-.6.8-2 .8-2s.2-1.6.2-3.3v-1.6c0-1.7-.2-3.3-.2-3.3zM9.9 14.3V8.9l5.2 2.7z"/></svg></a>
+        <a class="icon-btn" href="#" title="Instagram" aria-label="Instagram"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="#fff" stroke="none"/></svg></a>
+      </div>
+
+      <a class="brand" href="#/" aria-label="KONE-MEDIA Africa home">
+        <img src="assets/konemedia_logo.png" alt="KONE-MEDIA Africa">
+        <span class="tagline">Industry expert knowledge, shared.</span>
+      </a>
+
+      <div class="icon-cluster">
+        <button class="icon-btn" title="Saved" aria-label="Saved"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M6 4h12v16l-6-4-6 4z"/></svg></button>
+        <button class="icon-btn" title="Account" aria-label="Account"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 4-6 8-6s8 2 8 6"/></svg></button>
+        <button class="icon-btn is-blue" title="Search" aria-label="Search"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4-4"/></svg></button>
+      </div>
+    </div>
+
+    <nav class="site-nav"><ul id="nav-list"></ul></nav>
+  </div>
+</header>
+
+<!-- ===================== VIEW (rendered by JS) ===================== -->
+<main id="view" class="wrap" style="padding-top:0;">
+  <div class="state"><div class="spinner"></div>Loading stories…</div>
+</main>
+
+<!-- ===================== FOOTER ===================== -->
+<footer class="site-foot">
+  <div class="foot-inner">
+    <div class="foot-top">
+      <div class="foot-brand">
+        <div class="foot-wordmark"><span class="k">KONE-MEDIA</span></div>
+        <div class="africa">AFRICA</div>
+        <p>Industry expert knowledge, shared. News and analysis from across Kenya, Africa and the world.</p>
+      </div>
+      <div class="foot-col">
+        <h4>Sections</h4>
+        <ul class="foot-sections" id="foot-sections"></ul>
+      </div>
+      <div class="foot-col">
+        <h4>Contact</h4>
+        <div class="foot-contact">
+          <div>konemediakenya1@gmail.com</div>
+          <div class="addr">Kenya House Complex,<br>Koinange Street, 5th Floor<br>Nairobi, Kenya</div>
+        </div>
+        <div class="foot-social">
+          <a href="#" aria-label="Facebook"><svg width="15" height="15" viewBox="0 0 24 24" fill="#fff"><path d="M13.5 21v-8h2.7l.4-3.1h-3.1V7.9c0-.9.25-1.5 1.5-1.5h1.6V3.6c-.28-.04-1.24-.12-2.36-.12-2.33 0-3.93 1.42-3.93 4.04v2.25H7v3.1h2.81V21z"/></svg></a>
+          <a href="#" aria-label="YouTube"><svg width="15" height="15" viewBox="0 0 24 24" fill="#fff"><path d="M21.6 7.2s-.2-1.4-.8-2c-.76-.8-1.6-.8-2-.85C16 4.1 12 4.1 12 4.1s-4 0-6.8.25c-.4.05-1.24.05-2 .85-.6.6-.8 2-.8 2S2 8.8 2 10.5v1.6c0 1.7.2 3.3.2 3.3s.2 1.4.8 2c.76.8 1.76.78 2.2.86 1.6.16 6.8.2 6.8.2s4 0 6.8-.26c.4-.05 1.24-.05 2-.85.6-.6.8-2 .8-2s.2-1.6.2-3.3v-1.6c0-1.7-.2-3.3-.2-3.3zM9.9 14.3V8.9l5.2 2.7z"/></svg></a>
+          <a href="#" aria-label="Instagram"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="#fff" stroke="none"/></svg></a>
+        </div>
+      </div>
+    </div>
+    <div class="foot-bottom">© <span id="year"></span> KONE-MEDIA Africa. All rights reserved.</div>
+  </div>
+</footer>
+
+<script>
+/* =================================================================
+   CONFIG  —  the only thing you ever need to edit
+   -----------------------------------------------------------------
+   Leave WORDPRESS_URL = "" to show the built-in sample articles.
+   When your WordPress site is ready, set it to your address, e.g.
+       WORDPRESS_URL: "https://konemedia.co.ke"
+   and the whole site fills itself from your real posts.
+   (No other change needed. See README.md.)
+   ================================================================= */
+const CONFIG = {
+  WORDPRESS_URL: "",
+  POSTS_TO_LOAD: 30
+};
+
+const CATEGORIES = ['Sports','Business','Finance','Health','Technology','AI','Guides','Top 10'];
+const CAT_DESC = {
+  'Sports':'Football, athletics and the stories shaping Kenyan and African sport.',
+  'Business':'Companies, markets and the trends driving the regional economy.',
+  'Finance':'Banking, currencies, policy and personal money matters.',
+  'Health':'Public health, medicine and wellbeing across the continent.',
+  'Technology':'Startups, infrastructure and the digital economy in Africa.',
+  'AI':'How artificial intelligence is being built and used across Africa.',
+  'Guides':'Practical, expert-led explainers to help you make better decisions.',
+  'Top 10':'Curated rankings of the people, places and companies that matter.'
+};
+
+/* ---------- SAMPLE CONTENT (placeholder — replace via WordPress) ---------- */
+const SAMPLE_RAW = [
+  // SPORTS
+  ['Harambee Stars Edge Closer to AFCON Qualification After Win in Nairobi','Sports','Brian Otieno','Jun 26, 2026','A late header at Kasarani sealed a crucial victory, lifting Kenya into a strong position in the qualifying group.','sport1'],
+  ['Faith Kipyegon Sets Sights on Fourth 1500m World Title','Sports','Grace Achieng','Jun 25, 2026','The world record holder says she is in the best shape of her career as the global season approaches.','sport2'],
+  ['Gor Mahia Reclaim Top Spot in FKF Premier League Title Race','Sports','Brian Otieno','Jun 24, 2026','A commanding home performance has put the Nairobi giants back in control with weeks left in the season.','sport3'],
+  ['Kenya Names Strong Squad for World Athletics Relays','Sports','Grace Achieng','Jun 23, 2026','Selectors have named a blend of seasoned champions and rising talent for the upcoming championships.','sport4'],
+  // BUSINESS
+  ['Safaricom Posts Record Half-Year Profit as M-Pesa Revenue Climbs','Business','Wanjiru Kamau','Jun 26, 2026','The telco reported double-digit growth as mobile money and data services continued to drive earnings across the region.','biz1'],
+  ['Nairobi Securities Exchange Rallies on Renewed Foreign Investor Interest','Business','David Mwangi','Jun 25, 2026','The bourse posted its strongest week in months as overseas funds returned to blue-chip counters.','biz2'],
+  ['Kenya’s Tea Exports Hit Five-Year High Amid Strong Global Demand','Business','Wanjiru Kamau','Jun 24, 2026','Favourable weather and new markets have pushed export volumes to levels not seen since 2021.','biz3'],
+  ['EABL Expands Production Capacity with New Plant in Kisumu','Business','David Mwangi','Jun 22, 2026','The brewer says the multi-billion shilling investment will create jobs and serve growing regional demand.','biz4'],
+  // FINANCE
+  ['Central Bank Holds Benchmark Rate as Inflation Eases to 4.1%','Finance','David Mwangi','Jun 26, 2026','The monetary policy committee opted to keep rates steady, citing a stable shilling and cooling prices.','fin1'],
+  ['Shilling Steadies Against the Dollar After IMF Disbursement','Finance','Wanjiru Kamau','Jun 24, 2026','A fresh tranche of funding has eased pressure on the currency and boosted market confidence.','fin2'],
+  ['Treasury Unveils Plan to Widen Tax Base in 2026/27 Budget','Finance','David Mwangi','Jun 21, 2026','Officials say the measures aim to ease the burden on existing taxpayers while funding key services.','fin3'],
+  // HEALTH
+  ['Kenya Rolls Out Malaria Vaccine to 25 More Counties','Health','Amina Hassan','Jun 25, 2026','Health officials hailed the expansion as a major step in the fight against one of the country’s biggest killers.','hea1'],
+  ['Nairobi Hospitals Adopt AI Tools to Cut Diagnosis Wait Times','Health','Amina Hassan','Jun 23, 2026','Several facilities are piloting software that helps clinicians read scans faster and more accurately.','hea2'],
+  ['Mental Health Services Get Boost Under New UHC Framework','Health','Grace Achieng','Jun 20, 2026','Counselling and treatment will be integrated into primary care under the latest health reforms.','hea3'],
+  // TECHNOLOGY
+  ['Kenyan Startups Raise $640M in 2025, Leading East Africa','Technology','Samuel Kiprono','Jun 26, 2026','Fintech and climate ventures dominated funding as investors doubled down on the region’s talent.','tec1'],
+  ['Konza Technopolis Signs Deal to Host New Data Centre','Technology','Samuel Kiprono','Jun 24, 2026','The facility is expected to strengthen the country’s position as a regional digital hub.','tec2'],
+  ['Internet Speeds Surge as New Undersea Cable Lands in Mombasa','Technology','Samuel Kiprono','Jun 22, 2026','The cable promises faster, cheaper connectivity for millions of users across the coast and beyond.','tec3'],
+  // AI
+  ['How African Newsrooms Are Using AI to Fact-Check in Real Time','AI','Samuel Kiprono','Jun 26, 2026','Editors say new tools are helping verify claims faster, but warn that human judgement remains essential.','ai1'],
+  ['Kenyan Researchers Build Swahili Language Model for Local Apps','AI','Amina Hassan','Jun 25, 2026','The open model aims to make voice and text technology work better for millions of Swahili speakers.','ai2'],
+  ['Nairobi Hosts Africa’s Largest AI Summit as Investment Pours In','AI','Wanjiru Kamau','Jun 23, 2026','Founders, policymakers and investors gathered to chart a homegrown path for artificial intelligence.','ai3'],
+  // GUIDES
+  ['A Beginner’s Guide to Investing in the Nairobi Securities Exchange','Guides','David Mwangi','Jun 24, 2026','Everything a first-time investor needs to know before buying shares, from opening a CDS account to managing risk.','gui1'],
+  ['How to Register a Business in Kenya: Step-by-Step for 2026','Guides','Wanjiru Kamau','Jun 22, 2026','A practical walkthrough of the eCitizen process, costs and documents you need to start trading legally.','gui2'],
+  ['Saving with SACCOs: What You Need to Know Before You Join','Guides','Grace Achieng','Jun 19, 2026','We break down how SACCOs work, the benefits, and the questions to ask before committing your money.','gui3'],
+  // TOP 10
+  ['Top 10 Fastest-Growing Companies in Kenya Right Now','Top 10','Wanjiru Kamau','Jun 25, 2026','From fintech disruptors to agribusiness pioneers, these firms are scaling faster than anyone else.','top1'],
+  ['Top 10 Tech Hubs Shaping Africa’s Startup Scene','Top 10','Samuel Kiprono','Jun 23, 2026','The cities and spaces where the continent’s next generation of founders are building the future.','top2'],
+  ['Top 10 Destinations Driving Kenya’s Tourism Recovery','Top 10','Grace Achieng','Jun 21, 2026','Coast, savannah and city breaks are pulling record numbers of visitors back to the country.','top3']
+];
+
+const sampleImg = (s)=>`https://picsum.photos/seed/${s}/900/600`;
+const sampleBody = (a)=>
+  `<p>NAIROBI — ${a.excerpt}</p>`+
+  `<p>The development comes amid growing attention to the sector, with analysts pointing to a combination of policy shifts, private investment and changing consumer behaviour as the key forces behind the trend.</p>`+
+  `<p>Speaking to KONE-MEDIA, several industry stakeholders said the changes were already being felt on the ground, and urged regulators to provide clearer guidelines so the momentum can be sustained into the second half of the year.</p>`+
+  `<blockquote>“What we are seeing is a structural change, not a short-term spike. The organisations that adapt quickly will be the ones that define the next phase of growth across the region.”</blockquote>`+
+  `<p>Observers say the coming months will be decisive. With regional integration, global market conditions and shifting demand all in play, the story is far from over — and KONE-MEDIA will continue to follow it closely.</p>`;
+
+function buildSample(){
+  return SAMPLE_RAW.map((r,i)=>{
+    const a = {
+      id:String(i), title:r[0], category:r[1], author:r[2],
+      date:r[3], dateLine:r[3], excerpt:r[4],
+      img:sampleImg(r[5]),
+      shortExcerpt: r[4].length>92 ? r[4].slice(0,90).trim()+'…' : r[4],
+      readTime:'5 min read', caption:`${r[1]} · KONE-MEDIA Africa`,
+      tags:[]
+    };
+    a.bodyHtml = sampleBody(a);
+    return a;
+  });
+}
+
+/* ---------- WORDPRESS LOADER ---------- */
+function stripHtml(html){
+  const d = document.createElement('div'); d.innerHTML = html || '';
+  return (d.textContent || d.innerText || '').replace(/\s+/g,' ').trim();
+}
+function fmtDate(iso){
+  try{ return new Date(iso).toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'}); }
+  catch(e){ return ''; }
+}
+function readTimeFromHtml(html){
+  const words = stripHtml(html).split(' ').filter(Boolean).length;
+  return Math.max(1, Math.round(words/200)) + ' min read';
+}
+async function buildFromWordPress(){
+  const base = CONFIG.WORDPRESS_URL.replace(/\/+$/,'');
+  const url = `${base}/wp-json/wp/v2/posts?_embed&per_page=${CONFIG.POSTS_TO_LOAD}&orderby=date`;
+  const res = await fetch(url);
+  if(!res.ok) throw new Error('WordPress responded with '+res.status);
+  const posts = await res.json();
+  return posts.map(p=>{
+    const emb = p._embedded || {};
+    const media = emb['wp:featuredmedia'] && emb['wp:featuredmedia'][0];
+    const terms = emb['wp:term'] || [];
+    const catTerm = (terms[0] || []).find(t=>t.taxonomy==='category');
+    const tagNames = (terms[1] || []).map(t=>(t.slug||t.name||'').toLowerCase());
+    const author = emb.author && emb.author[0] ? emb.author[0].name : 'KONE-MEDIA';
+    const category = catTerm ? catTerm.name : 'News';
+    const excerpt = stripHtml(p.excerpt && p.excerpt.rendered);
+    const img = (media && (media.source_url)) || `https://picsum.photos/seed/${p.id}/900/600`;
+    return {
+      id:String(p.id), title:stripHtml(p.title && p.title.rendered), category, author,
+      date:fmtDate(p.date), dateLine:fmtDate(p.date), excerpt,
+      shortExcerpt: excerpt.length>92 ? excerpt.slice(0,90).trim()+'…' : excerpt,
+      img, caption:`${category} · KONE-MEDIA Africa`,
+      readTime: readTimeFromHtml(p.content && p.content.rendered),
+      bodyHtml: (p.content && p.content.rendered) || `<p>${excerpt}</p>`,
+      tags: tagNames
+    };
+  });
+}
+
+/* ---------- HOME LAYOUT SELECTION ---------- */
+function buildHome(items, fromWP){
+  const byCat = (c)=> items.filter(a=>a.category===c);
+  let latest, secondary, featured, trending;
+
+  if(!fromWP && items.length>=26){
+    // exact curated layout that matches the original mockup
+    latest    = items[4];
+    secondary = [items[17], items[14], items[11]];
+    featured  = [items[19], items[8], items[1], items[15], items[23]];
+    trending  = [items[4], items[14], items[0], items[8], items[17], items[11], items[5], items[1], items[15], items[23]];
+  }else{
+    // live WordPress: fill automatically from real posts
+    latest    = items[0];
+    secondary = items.slice(1,4);
+    const tagged = items.filter(a=>a.tags && a.tags.includes('featured'));
+    featured  = (tagged.length ? tagged : items).slice(0,5);
+    trending  = items.slice(0,10);
+  }
+  const sports   = byCat('Sports').slice(0,4);
+  const business = byCat('Business').filter(a=>!latest || a.id!==latest.id).slice(0,4);
+  return { latest, secondary, sports, business, featured, trending };
+}
+
+/* ---------- RENDERING ---------- */
+const $view = ()=>document.getElementById('view');
+const esc = (s)=>String(s==null?'':s)
+  .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+  .replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+
+let STATE = { items:[], fromWP:false };
+
+function renderHome(){
+  const h = buildHome(STATE.items, STATE.fromWP);
+  if(!h.latest){ $view().innerHTML = emptyState(); return; }
+
+  const sideList = (arr)=> arr.map(a=>`
+    <a class="side-link" href="#/article/${a.id}">
+      <img src="${esc(a.img)}" alt="" loading="lazy">
+      <div>
+        <h4>${esc(a.title)}</h4>
+        <div class="dl">${esc(a.dateLine)}</div>
+      </div>
+    </a>`).join('');
+
+  $view().innerHTML = `
+  <section class="home-grid">
+    <section>
+      <a class="cover-link" href="#/article/${h.latest.id}">
+        <div class="cover-imgwrap">
+          <img src="${esc(h.latest.img)}" alt="">
+          <span class="badge">Latest</span>
+        </div>
+        <h2 class="cover-title">${esc(h.latest.title)}</h2>
+        <div class="dateline">${esc(h.latest.dateLine)}</div>
+        <p class="cover-excerpt">${esc(h.latest.excerpt)}</p>
+      </a>
+    </section>
+
+    <section>
+      ${h.secondary.map(a=>`
+        <a class="story-link" href="#/article/${a.id}">
+          <img src="${esc(a.img)}" alt="" loading="lazy">
+          <div>
+            <h3>${esc(a.title)}</h3>
+            <div class="dl">${esc(a.dateLine)}</div>
+            <p>${esc(a.shortExcerpt)}</p>
+          </div>
+        </a>`).join('')}
+    </section>
+
+    <aside>
+      <div class="side-block">
+        <div class="side-head"><h3>Sports</h3><a class="side-more" href="#/category/Sports">More →</a></div>
+        ${sideList(h.sports)}
+      </div>
+      <div class="side-block">
+        <div class="side-head"><h3>Business</h3><a class="side-more" href="#/category/Business">More →</a></div>
+        ${sideList(h.business)}
+      </div>
+    </aside>
+  </section>
+
+  <section class="section">
+    <h2 class="featured-title">Featured Stories</h2>
+    <div class="featured-grid">
+      ${h.featured.map(a=>`
+        <a class="feat-card" href="#/article/${a.id}">
+          <img src="${esc(a.img)}" alt="" loading="lazy">
+          <div class="scrim"></div>
+          <div class="cap">
+            <span class="eyebrow">${esc(a.category)}</span>
+            <h3>${esc(a.title)}</h3>
+            <div class="dl">${esc(a.dateLine)}</div>
+          </div>
+        </a>`).join('')}
+    </div>
+  </section>
+
+  <section class="trending">
+    <div class="trend-head">
+      <h2>Trending</h2><span class="sub">Top 10 This Week</span>
+    </div>
+    <div class="trend-grid">
+      ${h.trending.map((a,i)=>`
+        <a class="trend-link" href="#/article/${a.id}">
+          <span class="rank">${String(i+1).padStart(2,'0')}</span>
+          <div>
+            <span class="eyebrow">${esc(a.category)}</span>
+            <h4>${esc(a.title)}</h4>
+          </div>
+        </a>`).join('')}
+    </div>
+  </section>`;
+}
+
+function renderArticle(id){
+  const art = STATE.items.find(a=>a.id===id);
+  if(!art){ renderHome(); return; }
+  const related = STATE.items.filter(a=>a.category===art.category && a.id!==art.id).slice(0,4);
+
+  $view().innerHTML = `
+  <a class="backlink" href="#/">← Back to home</a>
+  <div class="article-grid">
+    <article class="article-body">
+      <span class="art-eyebrow">${esc(art.category)}</span>
+      <h1 class="art-title">${esc(art.title)}</h1>
+      <div class="art-meta">
+        <span class="by">By ${esc(art.author)}</span>
+        <span class="sep">•</span><span style="font-style:italic;">${esc(art.dateLine)}</span>
+        <span class="sep">•</span><span>${esc(art.readTime)}</span>
+      </div>
+      <img class="art-cover" src="${esc(art.img)}" alt="">
+      <div class="art-caption">${esc(art.caption)}</div>
+      <div class="art-content">${art.bodyHtml || ''}</div>
+      <div class="share-row">
+        <span class="lbl">Share:</span>
+        <a class="share-ico" style="background:var(--orange)" href="#" aria-label="Share on Facebook"><svg width="14" height="14" viewBox="0 0 24 24" fill="#fff"><path d="M13.5 21v-8h2.7l.4-3.1h-3.1V7.9c0-.9.25-1.5 1.5-1.5h1.6V3.6c-.28-.04-1.24-.12-2.36-.12-2.33 0-3.93 1.42-3.93 4.04v2.25H7v3.1h2.81V21z"/></svg></a>
+        <a class="share-ico" style="background:var(--blue)" href="#" aria-label="Share on WhatsApp"><svg width="14" height="14" viewBox="0 0 24 24" fill="#fff"><path d="M18 2l-5.5 7L19 22h-4.2l-4-5.8L5.9 22H3l6-7.6L2.4 2h4.3l3.6 5.3L15.1 2z"/></svg></a>
+        <a class="share-ico" style="background:#1d9bf0" href="#" aria-label="Share on X"><svg width="14" height="14" viewBox="0 0 24 24" fill="#fff"><path d="M20 6.5a6.5 6.5 0 01-1.9.5 3.3 3.3 0 001.45-1.8 6.6 6.6 0 01-2.1.8A3.3 3.3 0 0012 8.9c0 .26.03.5.08.74A9.3 9.3 0 015.3 5.9a3.3 3.3 0 001 4.4c-.5 0-.97-.16-1.4-.38v.04a3.3 3.3 0 002.65 3.24c-.45.12-.92.14-1.38.05a3.3 3.3 0 003.08 2.3A6.6 6.6 0 013 19.05 9.3 9.3 0 008 20.5c6 0 9.3-5 9.3-9.3v-.42A6.6 6.6 0 0020 6.5z"/></svg></a>
+      </div>
+    </article>
+
+    <aside>
+      <div class="rel-head"><h3>More in ${esc(art.category)}</h3></div>
+      ${related.map(a=>`
+        <a class="rel-link" href="#/article/${a.id}">
+          <img src="${esc(a.img)}" alt="" loading="lazy">
+          <div><h4>${esc(a.title)}</h4><div class="dl">${esc(a.dateLine)}</div></div>
+        </a>`).join('') || '<p style="font-family:var(--serif);color:var(--muted);font-size:14px;">More stories coming soon.</p>'}
+      <div class="signup">
+        <h3>Stay informed</h3>
+        <p>Get expert industry analysis from across Kenya and Africa in your inbox.</p>
+        <div class="field">
+          <input type="email" id="nl-email" placeholder="Your email">
+          <button id="nl-btn">Subscribe</button>
+        </div>
+        <div class="note" id="nl-note" style="display:none;"></div>
+      </div>
+    </aside>
+  </div>`;
+
+  const btn = document.getElementById('nl-btn');
+  if(btn) btn.addEventListener('click', ()=>{
+    const note = document.getElementById('nl-note');
+    note.style.display='block';
+    note.textContent = 'Thanks — newsletter sign-ups will go live once an email service is connected.';
+  });
+}
+
+function renderCategory(name){
+  const items = STATE.items.filter(a=>a.category===name);
+  $view().innerHTML = `
+  <div class="cat-head">
+    <span class="eyebrow">Category</span>
+    <h1>${esc(name)}</h1>
+    <p>${esc(CAT_DESC[name] || '')}</p>
+  </div>
+  <div class="cat-grid">
+    ${items.map(a=>`
+      <a class="cat-card" href="#/article/${a.id}">
+        <img src="${esc(a.img)}" alt="" loading="lazy">
+        <span class="eyebrow">${esc(a.category)}</span>
+        <h3>${esc(a.title)}</h3>
+        <div class="dl">${esc(a.dateLine)}</div>
+        <p>${esc(a.shortExcerpt)}</p>
+      </a>`).join('') || '<p style="font-family:var(--serif);color:var(--muted);">No stories in this section yet.</p>'}
+  </div>`;
+}
+
+function emptyState(){
+  return `<div class="state">No stories to show yet. Publish your first post in WordPress and it will appear here.</div>`;
+}
+
+/* ---------- ROUTER ---------- */
+function router(){
+  const hash = location.hash.replace(/^#/,'') || '/';
+  const parts = hash.split('/').filter(Boolean); // e.g. ['article','12']
+  window.scrollTo(0,0);
+  if(parts[0]==='article'){ renderArticle(decodeURIComponent(parts[1])); }
+  else if(parts[0]==='category'){ renderCategory(decodeURIComponent(parts.slice(1).join('/'))); }
+  else { renderHome(); }
+}
+
+/* ---------- BOOT ---------- */
+function fillNav(){
+  const mk = (a)=>`<a href="#/category/${encodeURIComponent(a)}">${esc(a)}</a>`;
+  document.getElementById('nav-list').innerHTML = CATEGORIES.map(c=>`<li>${mk(c)}</li>`).join('');
+  document.getElementById('foot-sections').innerHTML = CATEGORIES.map(c=>`<li>${mk(c)}</li>`).join('');
+  document.getElementById('year').textContent = new Date().getFullYear();
+}
+
+async function boot(){
+  fillNav();
+  try{
+    if(CONFIG.WORDPRESS_URL && CONFIG.WORDPRESS_URL.trim()){
+      STATE.items = await buildFromWordPress();
+      STATE.fromWP = true;
+      if(!STATE.items.length){ STATE.items = buildSample(); STATE.fromWP = false; }
+    }else{
+      STATE.items = buildSample();
+    }
+  }catch(err){
+    console.warn('Could not load from WordPress, showing sample content:', err);
+    STATE.items = buildSample();
+    STATE.fromWP = false;
+  }
+  router();
+}
+
+window.addEventListener('hashchange', router);
+window.addEventListener('DOMContentLoaded', boot);
+</script>
+</body>
+</html>
