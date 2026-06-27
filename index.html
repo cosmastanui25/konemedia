@@ -3,18 +3,18 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title id="meta-title">KONE-MEDIA Africa — Industry expert knowledge, shared.</title>
-<meta id="meta-desc" name="description" content="News and analysis from across Kenya, Africa and the world.">
+<title id="meta-title">K-One Media | Industry Expert Knowledge Shared.</title>
+<meta id="meta-desc" name="description" content="K-One Media Africa shares expert news and analysis on business, finance, sports, health, technology and AI from right across Kenya and the continent.">
 <link id="meta-canonical" rel="canonical" href="https://konemedia.co.ke/">
 <meta id="meta-og-type" property="og:type" content="website">
-<meta id="meta-og-title" property="og:title" content="KONE-MEDIA Africa">
-<meta id="meta-og-desc" property="og:description" content="News and analysis from across Kenya, Africa and the world.">
+<meta id="meta-og-title" property="og:title" content="K-One Media | Industry Expert Knowledge Shared.">
+<meta id="meta-og-desc" property="og:description" content="K-One Media Africa shares expert news and analysis on business, finance, sports, health, technology and AI from right across Kenya and the continent.">
 <meta id="meta-og-url" property="og:url" content="https://konemedia.co.ke/">
 <meta id="meta-og-image" property="og:image" content="">
 <meta property="og:site_name" content="KONE-MEDIA Africa">
 <meta id="meta-tw-card" name="twitter:card" content="summary_large_image">
-<meta id="meta-tw-title" name="twitter:title" content="KONE-MEDIA Africa">
-<meta id="meta-tw-desc" name="twitter:description" content="News and analysis from across Kenya, Africa and the world.">
+<meta id="meta-tw-title" name="twitter:title" content="K-One Media | Industry Expert Knowledge Shared.">
+<meta id="meta-tw-desc" name="twitter:description" content="K-One Media Africa shares expert news and analysis on business, finance, sports, health, technology and AI from right across Kenya and the continent.">
 <meta id="meta-tw-image" name="twitter:image" content="">
 <link rel="icon" type="image/png" href="assets/konemedia.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -59,12 +59,15 @@ a{ color:inherit; }
 /* ---------- header ---------- */
 .site-head{ padding-top:22px; }
 .head-row{ display:flex; align-items:center; justify-content:space-between; gap:16px; }
+.head-actions{ display:flex; align-items:center; gap:10px; }
 .icon-cluster{ display:flex; gap:8px; }
 .icon-btn{ width:34px; height:34px; border:none; display:flex; align-items:center; justify-content:center; border-radius:3px; cursor:pointer; background:var(--orange); }
 .icon-btn.is-blue{ background:var(--blue); }
-.brand{ display:flex; flex-direction:column; align-items:center; text-decoration:none; cursor:pointer; flex:0 1 auto; min-width:0; }
+.brand{ display:flex; flex-direction:column; align-items:flex-start; text-decoration:none; cursor:pointer; flex:0 1 auto; min-width:0; }
 .brand img{ height:54px; width:auto; }
-.brand .tagline{ margin-top:6px; font-family:var(--serif); font-style:italic; color:var(--orange); font-size:14px; letter-spacing:.3px; text-align:center; }
+.brand .tagline{ margin-top:6px; font-family:var(--serif); font-style:italic; color:var(--orange); font-size:14px; letter-spacing:.3px; text-align:left; }
+/* home H1 (SEO + accessibility) */
+.home-h1{ font-family:var(--display); font-weight:700; font-style:italic; font-size:clamp(18px,2.6vw,24px); color:var(--blue); margin:26px 0 2px; padding-bottom:6px; }
 
 .site-nav{ margin-top:20px; border-top:1.5px solid var(--blue); border-bottom:1.5px solid var(--blue); padding:11px 0; }
 .site-nav ul{ list-style:none; margin:0; padding:0; display:flex; flex-wrap:wrap; justify-content:center; gap:28px; }
@@ -197,7 +200,8 @@ a{ color:inherit; }
 .site-foot{ background:var(--dark); margin-top:64px; padding:46px 32px 30px; }
 .foot-inner{ max-width:1320px; margin:0 auto; }
 .foot-top{ display:flex; flex-wrap:wrap; gap:30px; justify-content:space-between; align-items:flex-start; border-bottom:1px solid #2B313B; padding-bottom:30px; }
-.foot-brand{ max-width:300px; }
+.foot-brand{ max-width:320px; }
+.foot-logo{ height:46px; width:auto; margin-bottom:14px; }
 .foot-wordmark{ font-family:Arial,Helvetica,sans-serif; font-weight:800; font-size:26px; letter-spacing:.5px; line-height:1; margin-bottom:6px; }
 .foot-wordmark .k{ color:#fff; }
 .foot-wordmark .a{ color:var(--orange); }
@@ -230,7 +234,7 @@ a{ color:inherit; }
 @media (max-width:760px){
   .wrap{ padding-left:18px; padding-right:18px; }
   .site-foot{ padding-left:18px; padding-right:18px; }
-  .brand img{ height:42px; }
+  .brand img{ height:44px; }
   .brand .tagline{ font-size:12px; }
   .site-nav{ overflow-x:auto; -webkit-overflow-scrolling:touch; }
   .site-nav ul{ flex-wrap:nowrap; justify-content:flex-start; gap:20px; }
@@ -241,14 +245,21 @@ a{ color:inherit; }
   .cat-grid{ grid-template-columns:repeat(2,1fr); gap:26px 20px; }
   .trending{ padding:24px 20px; }
   .art-cover{ height:260px; }
+  .icon-cluster.social{ display:none; }   /* keep header tidy on tablets/phones */
 }
 @media (max-width:560px){
-  .icon-cluster.left{ display:none; }   /* keep the bar clean on phones */
-  .head-row{ justify-content:space-between; }
+  .head-row{ align-items:center; }
+  .brand img{ height:38px; }
+  .brand .tagline{ font-size:11px; margin-top:4px; }
+  .head-actions{ gap:6px; }
+  .icon-btn{ width:30px; height:30px; }
   .featured-grid{ grid-template-columns:1fr; }
   .feat-card{ height:260px; }
   .cat-grid{ grid-template-columns:1fr; }
   .story-link img{ width:96px; height:78px; }
+}
+@media (max-width:380px){
+  .brand .tagline{ display:none; }   /* very small phones: logo only */
 }
 @media (prefers-reduced-motion:reduce){
   *{ animation:none !important; transition:none !important; }
@@ -261,21 +272,22 @@ a{ color:inherit; }
 <header class="site-head">
   <div class="wrap">
     <div class="head-row">
-      <div class="icon-cluster left">
-        <a class="icon-btn" href="#" title="Facebook" aria-label="Facebook"><svg width="16" height="16" viewBox="0 0 24 24" fill="#fff"><path d="M13.5 21v-8h2.7l.4-3.1h-3.1V7.9c0-.9.25-1.5 1.5-1.5h1.6V3.6c-.28-.04-1.24-.12-2.36-.12-2.33 0-3.93 1.42-3.93 4.04v2.25H7v3.1h2.81V21z"/></svg></a>
-        <a class="icon-btn" href="#" title="YouTube" aria-label="YouTube"><svg width="16" height="16" viewBox="0 0 24 24" fill="#fff"><path d="M21.6 7.2s-.2-1.4-.8-2c-.76-.8-1.6-.8-2-.85C16 4.1 12 4.1 12 4.1h-.02s-4 0-6.8.25c-.4.05-1.24.05-2 .85-.6.6-.8 2-.8 2S2 8.8 2 10.5v1.6c0 1.7.2 3.3.2 3.3s.2 1.4.8 2c.76.8 1.76.78 2.2.86 1.6.16 6.8.2 6.8.2s4 0 6.8-.26c.4-.05 1.24-.05 2-.85.6-.6.8-2 .8-2s.2-1.6.2-3.3v-1.6c0-1.7-.2-3.3-.2-3.3zM9.9 14.3V8.9l5.2 2.7z"/></svg></a>
-        <a class="icon-btn" href="#" title="Instagram" aria-label="Instagram"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="#fff" stroke="none"/></svg></a>
-      </div>
-
       <a class="brand" href="/" aria-label="KONE-MEDIA Africa home">
         <img src="assets/konemedia_logo.png" alt="KONE-MEDIA Africa">
         <span class="tagline">Industry expert knowledge, shared.</span>
       </a>
 
-      <div class="icon-cluster">
-        <button class="icon-btn" title="Saved" aria-label="Saved"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M6 4h12v16l-6-4-6 4z"/></svg></button>
-        <button class="icon-btn" title="Account" aria-label="Account"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 4-6 8-6s8 2 8 6"/></svg></button>
-        <button class="icon-btn is-blue" title="Search" aria-label="Search"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4-4"/></svg></button>
+      <div class="head-actions">
+        <div class="icon-cluster social">
+          <a class="icon-btn" href="#" title="Facebook" aria-label="Facebook"><svg width="16" height="16" viewBox="0 0 24 24" fill="#fff"><path d="M13.5 21v-8h2.7l.4-3.1h-3.1V7.9c0-.9.25-1.5 1.5-1.5h1.6V3.6c-.28-.04-1.24-.12-2.36-.12-2.33 0-3.93 1.42-3.93 4.04v2.25H7v3.1h2.81V21z"/></svg></a>
+          <a class="icon-btn" href="#" title="YouTube" aria-label="YouTube"><svg width="16" height="16" viewBox="0 0 24 24" fill="#fff"><path d="M21.6 7.2s-.2-1.4-.8-2c-.76-.8-1.6-.8-2-.85C16 4.1 12 4.1 12 4.1h-.02s-4 0-6.8.25c-.4.05-1.24.05-2 .85-.6.6-.8 2-.8 2S2 8.8 2 10.5v1.6c0 1.7.2 3.3.2 3.3s.2 1.4.8 2c.76.8 1.76.78 2.2.86 1.6.16 6.8.2 6.8.2s4 0 6.8-.26c.4-.05 1.24-.05 2-.85.6-.6.8-2 .8-2s.2-1.6.2-3.3v-1.6c0-1.7-.2-3.3-.2-3.3zM9.9 14.3V8.9l5.2 2.7z"/></svg></a>
+          <a class="icon-btn" href="#" title="Instagram" aria-label="Instagram"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="#fff" stroke="none"/></svg></a>
+        </div>
+        <div class="icon-cluster">
+          <button class="icon-btn" title="Saved" aria-label="Saved"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M6 4h12v16l-6-4-6 4z"/></svg></button>
+          <button class="icon-btn" title="Account" aria-label="Account"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 4-6 8-6s8 2 8 6"/></svg></button>
+          <button class="icon-btn is-blue" title="Search" aria-label="Search"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4-4"/></svg></button>
+        </div>
       </div>
     </div>
 
@@ -293,8 +305,7 @@ a{ color:inherit; }
   <div class="foot-inner">
     <div class="foot-top">
       <div class="foot-brand">
-        <div class="foot-wordmark"><span class="k">KONE-MEDIA</span></div>
-        <div class="africa">AFRICA</div>
+        <img class="foot-logo" src="assets/konemedia_logo_white.png" alt="KONE-MEDIA Africa">
         <p>Industry expert knowledge, shared. News and analysis from across Kenya, Africa and the world.</p>
       </div>
       <div class="foot-col">
@@ -506,8 +517,43 @@ const pHome = ()=> BASE;
 const pArticle = (id)=> BASE + encodeURIComponent(id);
 const pCategory = (name)=> BASE + 'category/' + encodeURIComponent(name);
 
+/* ---------- SEO title (45-55) + description (145-155) fitting ---------- */
+const BRAND = 'KONE-MEDIA Africa';
+const HOME_TITLE = 'K-One Media | Industry Expert Knowledge Shared.';
+const HOME_DESC  = 'K-One Media Africa shares expert news and analysis on business, finance, sports, health, technology and AI from right across Kenya and the continent.';
+function collapse(s){ return String(s==null?'':s).replace(/\s+/g,' ').trim(); }
+function truncWord(s,max){
+  if(s.length<=max) return s;
+  let t = s.slice(0,max);
+  const i = t.lastIndexOf(' ');
+  if(i>20) t = t.slice(0,i);
+  return t.replace(/[\s,.;:–—-]+$/,'');
+}
+function fitTitle(base){
+  base = collapse(base);
+  const cands = [ base+' | '+BRAND, base+' | KONE-MEDIA', base+' | KONE', base ];
+  for(const c of cands){ if(c.length>=45 && c.length<=55) return c; }
+  const withBrand = base+' | '+BRAND;
+  if(withBrand.length < 45){
+    const padded = base+' News & Analysis | '+BRAND;
+    return (padded.length<=55) ? padded : withBrand;
+  }
+  const suffix = ' | KONE-MEDIA';
+  const out = truncWord(base, 55 - suffix.length) + suffix;
+  return (out.length>=45 && out.length<=55) ? out : truncWord(base, 55);
+}
+function fitDesc(base){
+  base = collapse(base);
+  if(base.length > 155) return truncWord(base,154) + '…';
+  if(base.length >= 145) return base;
+  const pad = 'Read the latest news and expert analysis from across Kenya and Africa on KONE-MEDIA Africa.';
+  let d = collapse(base.replace(/[.\s]+$/,'') + '. ' + pad);
+  if(d.length > 155) d = truncWord(d,154) + '…';
+  return d;
+}
+
 function renderHome(){
-  setMeta({ title:'KONE-MEDIA Africa — Industry expert knowledge, shared.', desc:'News and analysis from across Kenya, Africa and the world.', path:'/' });
+  setMeta({ title: HOME_TITLE, desc: HOME_DESC, path:'/' });
   const h = buildHome(STATE.items, STATE.fromWP);
   if(!h.latest){ $view().innerHTML = emptyState(); return; }
 
@@ -521,6 +567,7 @@ function renderHome(){
     </a>`).join('');
 
   $view().innerHTML = `
+  <h1 class="home-h1">Industry Expert Knowledge</h1>
   <section class="home-grid">
     <section>
       <a class="cover-link" href="${pArticle(h.latest.id)}">
@@ -594,7 +641,7 @@ function renderHome(){
 function renderArticle(id){
   const art = STATE.items.find(a=>a.id===id);
   if(!art){ try{ history.replaceState(null,'', pHome()); }catch(e){} renderHome(); return; }
-  setMeta({ title: art.title + ' — KONE-MEDIA Africa', desc: art.excerpt, path: pArticle(art.id), image: art.img });
+  setMeta({ title: fitTitle(art.title), desc: fitDesc(art.excerpt || art.title), path: pArticle(art.id), image: art.img });
   const related = STATE.items.filter(a=>a.category===art.category && a.id!==art.id).slice(0,4);
 
   $view().innerHTML = `
@@ -658,7 +705,7 @@ function renderArticle(id){
 }
 
 function renderCategory(name){
-  setMeta({ title: name + ' — KONE-MEDIA Africa', desc: CAT_DESC[name] || '', path: pCategory(name) });
+  setMeta({ title: fitTitle(name + ' News, Updates & Analysis'), desc: fitDesc(CAT_DESC[name] || (name + ' news, updates and expert analysis from KONE-MEDIA Africa.')), path: pCategory(name) });
   const items = STATE.items.filter(a=>a.category===name);
   $view().innerHTML = `
   <div class="cat-head">
