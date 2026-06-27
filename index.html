@@ -20,7 +20,11 @@
 <link rel="icon" type="image/png" href="assets/konemedia.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;1,500;1,600;1,700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://cms.konemedia.co.ke" crossorigin>
+<link rel="dns-prefetch" href="https://cms.konemedia.co.ke">
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;1,500;1,600;1,700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;1,500;1,600;1,700&display=swap" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700&family=Playfair+Display:ital,wght@0,600;0,700;0,800&display=swap"></noscript>
 
 <!-- ============================================================= -->
 <!--  KONE-MEDIA Africa  ·  static front-end                       -->
@@ -438,6 +442,8 @@ function buildSample(){
       id:slugify(r[0]), title:r[0], category:r[1], author:r[2],
       date:r[3], dateLine:r[3], excerpt:r[4],
       img:sampleImg(r[5]),
+      imgCard:`https://picsum.photos/seed/${r[5]}/600/400`,
+      imgThumb:`https://picsum.photos/seed/${r[5]}/240/180`,
       shortExcerpt: r[4].length>92 ? r[4].slice(0,90).trim()+'…' : r[4],
       readTime:'5 min read', caption:`${r[1]} · KONE-MEDIA Africa`,
       tags:[]
@@ -469,6 +475,18 @@ function readTimeFromHtml(html){
   const words = stripHtml(html).split(' ').filter(Boolean).length;
   return Math.max(1, Math.round(words/200)) + ' min read';
 }
+// Pick appropriately-sized image variants so we never download a huge full-size
+// photo for a small card. Falls back gracefully when sizes are missing.
+function mediaUrls(media, seed){
+  const full = media && media.source_url;
+  const sizes = (media && media.media_details && media.media_details.sizes) || {};
+  const pick = (...keys)=>{ for(const k of keys){ if(sizes[k] && sizes[k].source_url) return sizes[k].source_url; } return null; };
+  const large = pick('large','medium_large','1536x1536') || full;
+  const card  = pick('medium_large','medium','large') || large || full;
+  const thumb = pick('medium','thumbnail') || card || full;
+  const fb = 'https://picsum.photos/seed/'+seed+'/900/600';
+  return { img: large || fb, imgCard: card || fb, imgThumb: thumb || fb };
+}
 async function buildFromWordPress(){
   const base = CONFIG.WORDPRESS_URL.replace(/\/+$/,'');
   const url = `${base}/wp-json/wp/v2/posts?_embed&per_page=${CONFIG.POSTS_TO_LOAD}&orderby=date`;
@@ -484,12 +502,13 @@ async function buildFromWordPress(){
     const author = emb.author && emb.author[0] ? emb.author[0].name : 'KONE-MEDIA';
     const category = catTerm ? catTerm.name : 'News';
     const excerpt = stripHtml(p.excerpt && p.excerpt.rendered);
-    const img = (media && (media.source_url)) || `https://picsum.photos/seed/${p.id}/900/600`;
+    const m = mediaUrls(media, p.id);
     return {
-      id: (p.slug && p.slug.length) ? p.slug : String(p.id), title:stripHtml(p.title && p.title.rendered), category, author,
+      id: (p.slug && p.slug.length) ? p.slug : String(p.id), postId: p.id,
+      title:stripHtml(p.title && p.title.rendered), category, author,
       date:fmtDate(p.date), dateLine:fmtDate(p.date), excerpt,
       shortExcerpt: excerpt.length>92 ? excerpt.slice(0,90).trim()+'…' : excerpt,
-      img, caption:`${category} · KONE-MEDIA Africa`,
+      img: m.img, imgCard: m.imgCard, imgThumb: m.imgThumb, caption:`${category} · KONE-MEDIA Africa`,
       readTime: readTimeFromHtml(p.content && p.content.rendered),
       bodyHtml: (p.content && p.content.rendered) || `<p>${excerpt}</p>`,
       tags: tagNames
@@ -606,7 +625,7 @@ function renderHome(){
 
   const sideList = (arr)=> arr.map(a=>`
     <a class="side-link" href="${pArticle(a.id)}">
-      <img src="${esc(a.img)}" alt="" loading="lazy">
+      <img src="${esc(a.imgThumb)}" alt="" loading="lazy" decoding="async" width="60" height="54">
       <div>
         <h4>${esc(a.title)}</h4>
         <div class="dl">${esc(a.dateLine)}</div>
@@ -619,7 +638,7 @@ function renderHome(){
     <section>
       <a class="cover-link" href="${pArticle(h.latest.id)}">
         <div class="cover-imgwrap">
-          <img src="${esc(h.latest.img)}" alt="">
+          <img src="${esc(h.latest.img)}" alt="" fetchpriority="high" decoding="async" width="900" height="600">
           <span class="badge">Latest</span>
         </div>
         <h2 class="cover-title">${esc(h.latest.title)}</h2>
@@ -631,7 +650,7 @@ function renderHome(){
     <section>
       ${h.secondary.map(a=>`
         <a class="story-link" href="${pArticle(a.id)}">
-          <img src="${esc(a.img)}" alt="" loading="lazy">
+          <img src="${esc(a.imgThumb)}" alt="" loading="lazy" decoding="async" width="120" height="96">
           <div>
             <h3>${esc(a.title)}</h3>
             <div class="dl">${esc(a.dateLine)}</div>
@@ -657,7 +676,7 @@ function renderHome(){
     <div class="featured-grid">
       ${h.featured.map(a=>`
         <a class="feat-card" href="${pArticle(a.id)}">
-          <img src="${esc(a.img)}" alt="" loading="lazy">
+          <img src="${esc(a.imgCard)}" alt="" loading="lazy" decoding="async">
           <div class="scrim"></div>
           <div class="cap">
             <span class="eyebrow">${esc(a.category)}</span>
@@ -702,7 +721,7 @@ function renderArticle(id){
         <span class="sep">•</span><span style="font-style:italic;">${esc(art.dateLine)}</span>
         <span class="sep">•</span><span>${esc(art.readTime)}</span>
       </div>
-      <img class="art-cover" src="${esc(art.img)}" alt="">
+      <img class="art-cover" src="${esc(art.img)}" alt="" fetchpriority="high" decoding="async">
       <div class="art-caption">${esc(art.caption)}</div>
       <div class="art-content">${art.bodyHtml || ''}</div>
       <div class="share-row">
@@ -717,7 +736,7 @@ function renderArticle(id){
       <div class="rel-head"><h3>More in ${esc(art.category)}</h3></div>
       ${related.map(a=>`
         <a class="rel-link" href="${pArticle(a.id)}">
-          <img src="${esc(a.img)}" alt="" loading="lazy">
+          <img src="${esc(a.imgThumb)}" alt="" loading="lazy" decoding="async" width="74" height="62">
           <div><h4>${esc(a.title)}</h4><div class="dl">${esc(a.dateLine)}</div></div>
         </a>`).join('') || '<p style="font-family:var(--serif);color:var(--muted);font-size:14px;">More stories coming soon.</p>'}
       <div class="signup">
@@ -778,7 +797,7 @@ function drawCategory(){
   const remaining = all.length - slice.length;
   const cards = slice.map(a=>`
       <a class="cat-card" href="${pArticle(a.id)}">
-        <img src="${esc(a.img)}" alt="" loading="lazy">
+        <img src="${esc(a.imgCard)}" alt="" loading="lazy" decoding="async">
         <span class="eyebrow">${esc(a.category)}</span>
         <h3>${esc(a.title)}</h3>
         <div class="dl">${esc(a.dateLine)}</div>
@@ -875,6 +894,12 @@ function fillNav(){
   document.getElementById('year').textContent = new Date().getFullYear();
 }
 
+/* ---------- instant repeat loads: cache + background revalidate ---------- */
+const CACHE_KEY = 'km_posts_v2';
+function readCache(){ try{ const r = JSON.parse(localStorage.getItem(CACHE_KEY)); if(r && Array.isArray(r.items) && r.items.length) return r.items; }catch(e){} return null; }
+function writeCache(items){ try{ localStorage.setItem(CACHE_KEY, JSON.stringify({ t:Date.now(), items })); }catch(e){} }
+function sig(items){ return items.map(a=>a.id+':'+a.dateLine).join('|'); }
+
 async function boot(){
   // restore a deep link captured by 404.html (GitHub Pages clean-URL support)
   try{
@@ -882,18 +907,35 @@ async function boot(){
     if(r){ sessionStorage.removeItem('spa-redirect'); history.replaceState(null,'', r); }
   }catch(e){}
   fillNav();
+
+  const hasWP = CONFIG.WORDPRESS_URL && CONFIG.WORDPRESS_URL.trim();
+  if(!hasWP){ STATE.items = buildSample(); router(); return; }
+
+  const cached = readCache();
+  if(cached){
+    // paint instantly from cache, then quietly refresh in the background
+    STATE.items = cached; STATE.fromWP = true;
+    router();
+    buildFromWordPress().then(fresh=>{
+      if(fresh && fresh.length){
+        writeCache(fresh);
+        if(sig(fresh) !== sig(cached)){
+          STATE.items = fresh;
+          if(window.scrollY < 200) router();   // only re-render if the reader is near the top
+        }
+      }
+    }).catch(()=>{});
+    return;
+  }
+
+  // first visit (no cache): fetch, then render
   try{
-    if(CONFIG.WORDPRESS_URL && CONFIG.WORDPRESS_URL.trim()){
-      STATE.items = await buildFromWordPress();
-      STATE.fromWP = true;
-      if(!STATE.items.length){ STATE.items = buildSample(); STATE.fromWP = false; }
-    }else{
-      STATE.items = buildSample();
-    }
+    const fresh = await buildFromWordPress();
+    if(fresh && fresh.length){ STATE.items = fresh; STATE.fromWP = true; writeCache(fresh); }
+    else { STATE.items = buildSample(); }
   }catch(err){
     console.warn('Could not load from WordPress, showing sample content:', err);
-    STATE.items = buildSample();
-    STATE.fromWP = false;
+    STATE.items = buildSample(); STATE.fromWP = false;
   }
   router();
 }

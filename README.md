@@ -123,3 +123,17 @@ Email subscriptions and the contact form use **Netlify Forms**. To get the submi
 3. Send to **cosmastanui25@gmail.com**. Save.
 
 Submissions are also stored under the Forms tab even before you add the email. (Free plan includes 100 submissions/month.)
+
+---
+
+## Update: performance
+
+Speed optimizations (no visual or functional change):
+- **Right-sized images** — each spot loads an appropriately scaled photo from WordPress (thumbnails for small cards, medium for grids, large for hero) instead of full-size files. The single biggest speed win.
+- **Priority hints** — the main hero image loads first (`fetchpriority="high"`); all other images lazy-load and decode async.
+- **Faster CMS connection** — `preconnect` to cms.konemedia.co.ke so the data request starts sooner.
+- **Non-blocking fonts** — fonts no longer hold up first paint.
+- **Instant repeat visits** — the post list is cached in the browser and refreshed quietly in the background (stale-while-revalidate), so reloads and return visits render immediately.
+- **Asset caching** — logos/favicon cached for a week via `netlify.toml`.
+
+Netlify already serves everything over HTTP/2 with Brotli/gzip compression and a global CDN, so no extra setup is needed. After deploying, you can check the score at pagespeed.web.dev.

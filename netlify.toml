@@ -1,3 +1,10 @@
 [build]
   publish = "."
   functions = "netlify/functions"
+
+# Cache static assets aggressively (logos, favicon). They rarely change;
+# if you replace one, redeploy and Netlify serves the new file.
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=604800, stale-while-revalidate=86400"
