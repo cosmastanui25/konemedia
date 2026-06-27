@@ -1,0 +1,51 @@
+# KONE-MEDIA Africa — robots.txt
+# Posts are indexable. Category pages are set to noindex via a meta tag
+# (so crawlers can still follow links through them but won't index them).
+
+User-agent: *
+Allow: /
+
+# --- AI crawlers explicitly welcomed ---
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: Bytespider
+Allow: /
+
+User-agent: Amazonbot
+Allow: /
+
+User-agent: meta-externalagent
+Allow: /
+
+Sitemap: https://konemedia.co.ke/sitemap.xml

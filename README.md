@@ -102,3 +102,24 @@ Two extra files make this work:
 - `_redirects` — gives fully clean URLs with a proper 200 status if you host on **Netlify or Cloudflare Pages**. GitHub Pages ignores it; it's there for when/if you move.
 
 Note for GitHub Pages: a *direct* visit to `konemedia.co.ke/hello-world` works for people, but the server returns a 404 status for an instant before the page loads, which search engines don't love. For best SEO, host the same files on Netlify or Cloudflare Pages (free, drag-and-drop) — the `_redirects` file then serves clean URLs properly. Normal clicking between pages on the site is always clean and instant on either host.
+
+---
+
+## Update: sitemap, robots, categories, contact, subscriptions
+
+New files: `robots.txt`, `netlify.toml`, `netlify/functions/sitemap.js`.
+
+- **Sitemap**: `https://konemedia.co.ke/sitemap.xml` is generated live from your WordPress posts (posts only), cached for 12 hours so it refreshes twice a day. Submit it once in Google Search Console.
+- **robots.txt** points to the sitemap and welcomes all AI crawlers. Category pages carry a `noindex` tag so only posts get indexed (tags aren't exposed as pages).
+- **Category URLs** are now clean: `konemedia.co.ke/Business` (old `/category/...` links 301-redirect to the new ones).
+- **Menu** now has **Home** and **Contact**; on mobile the full menu wraps onto rows (all items visible, no sideways scroll).
+- **Categories** show 10 articles with a **Show more** button that loads the next 10 each time.
+- **Contact page** at `/contact` with your details and a message form.
+
+### One manual step on Netlify (to receive subscriptions + contact messages)
+Email subscriptions and the contact form use **Netlify Forms**. To get the submissions emailed to you:
+1. Netlify dashboard → your site → **Forms**.
+2. Open **Form notifications** → **Add notification** → **Email notification**.
+3. Send to **cosmastanui25@gmail.com**. Save.
+
+Submissions are also stored under the Forms tab even before you add the email. (Free plan includes 100 submissions/month.)

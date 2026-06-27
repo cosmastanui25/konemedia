@@ -1,4 +1,8 @@
-# If you host on Netlify or Cloudflare Pages, this serves index.html for every
-# path with a proper 200 status, giving fully clean URLs (no 404 bounce).
-# GitHub Pages ignores this file and uses 404.html instead — both are included.
-/*    /index.html   200
+# Dynamic posts-only sitemap (Netlify function), refreshed every 12h
+/sitemap.xml    /.netlify/functions/sitemap   200
+
+# Old category URLs -> new clean category URLs (301 for SEO consolidation)
+/category/*     /:splat                        301
+
+# SPA fallback: serve the app for every other path with a 200 status
+/*              /index.html                    200

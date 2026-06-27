@@ -6,6 +6,7 @@
 <title id="meta-title">K-One Media | Industry Expert Knowledge Shared.</title>
 <meta id="meta-desc" name="description" content="K-One Media Africa shares expert news and analysis on business, finance, sports, health, technology and AI from right across Kenya and the continent.">
 <link id="meta-canonical" rel="canonical" href="https://konemedia.co.ke/">
+<meta id="meta-robots" name="robots" content="index, follow, max-image-preview:large">
 <meta id="meta-og-type" property="og:type" content="website">
 <meta id="meta-og-title" property="og:title" content="K-One Media | Industry Expert Knowledge Shared.">
 <meta id="meta-og-desc" property="og:description" content="K-One Media Africa shares expert news and analysis on business, finance, sports, health, technology and AI from right across Kenya and the continent.">
@@ -196,6 +197,25 @@ a{ color:inherit; }
 .cat-card .dl{ font-family:var(--serif); font-style:italic; color:var(--muted2); font-size:13px; margin-bottom:9px; }
 .cat-card p{ font-family:var(--serif); font-size:14.5px; line-height:1.55; color:#5C584F; margin:0; }
 
+/* ---------- show more button ---------- */
+.more-wrap{ text-align:center; margin:38px 0 6px; }
+.more-btn{ font-family:var(--serif); font-weight:600; font-size:15px; color:#fff; background:var(--blue); border:none; padding:13px 28px; border-radius:3px; cursor:pointer; transition:background .15s; }
+.more-btn:hover{ background:#0f3576; }
+.more-count{ font-weight:400; opacity:.85; font-size:13px; margin-left:4px; }
+
+/* ---------- contact page ---------- */
+.contact-grid{ display:grid; grid-template-columns:1fr 1.2fr; gap:42px; align-items:start; }
+.contact-info h3,.contact-form h3{ font-family:var(--display); font-weight:700; font-size:20px; color:var(--ink); margin:0 0 14px; }
+.contact-info p{ font-family:var(--serif); font-size:16px; line-height:1.6; color:var(--ink2); margin:0 0 4px; }
+.contact-info a{ color:var(--blue); }
+.contact-info .ci-label{ font-family:var(--serif); font-weight:600; text-transform:uppercase; letter-spacing:.5px; font-size:12px; color:var(--orange); margin:16px 0 2px; }
+.contact-info .foot-social a{ background:var(--orange); }
+.contact-form{ background:var(--panel); border:1px solid var(--line2); padding:24px 24px 26px; border-radius:3px; }
+.cf-row{ margin-bottom:12px; }
+.cf-row input,.cf-row textarea{ width:100%; border:1px solid var(--line); padding:11px 13px; font-family:var(--serif); font-size:15px; border-radius:3px; background:#fff; color:var(--ink); }
+.cf-row textarea{ resize:vertical; }
+.cf-note{ margin-top:12px; font-family:var(--serif); font-size:14px; line-height:1.5; color:var(--blue); }
+
 /* ---------- footer ---------- */
 .site-foot{ background:var(--dark); margin-top:64px; padding:46px 32px 30px; }
 .foot-inner{ max-width:1320px; margin:0 auto; }
@@ -230,15 +250,16 @@ a{ color:inherit; }
   .home-grid{ grid-template-columns:1fr; gap:34px; }
   .article-grid{ grid-template-columns:1fr; gap:36px; }
   .cover-imgwrap img{ height:300px; }
+  .contact-grid{ grid-template-columns:1fr; gap:28px; }
 }
 @media (max-width:760px){
   .wrap{ padding-left:18px; padding-right:18px; }
   .site-foot{ padding-left:18px; padding-right:18px; }
   .brand img{ height:44px; }
   .brand .tagline{ font-size:12px; }
-  .site-nav{ overflow-x:auto; -webkit-overflow-scrolling:touch; }
-  .site-nav ul{ flex-wrap:nowrap; justify-content:flex-start; gap:20px; }
-  .site-nav a{ white-space:nowrap; }
+  .site-nav{ overflow:visible; }
+  .site-nav ul{ flex-wrap:wrap; justify-content:center; gap:10px 18px; }
+  .site-nav a{ white-space:nowrap; font-size:14px; }
   .featured-grid{ grid-template-columns:repeat(2,1fr); }
   .feat-card{ height:300px; }
   .trend-grid{ grid-template-columns:1fr; gap:0 0; }
@@ -268,6 +289,19 @@ a{ color:inherit; }
 </head>
 <body>
 
+<!-- Hidden static forms so Netlify detects them at deploy. The visible
+     forms (rendered by JS) submit to these by name via fetch. -->
+<form name="newsletter" data-netlify="true" netlify-honeypot="bot-field" hidden>
+  <input type="email" name="email">
+  <input name="bot-field">
+</form>
+<form name="contact" data-netlify="true" netlify-honeypot="bot-field" hidden>
+  <input type="text" name="name">
+  <input type="email" name="email">
+  <textarea name="message"></textarea>
+  <input name="bot-field">
+</form>
+
 <!-- ===================== HEADER ===================== -->
 <header class="site-head">
   <div class="wrap">
@@ -282,11 +316,6 @@ a{ color:inherit; }
           <a class="icon-btn" href="#" title="Facebook" aria-label="Facebook"><svg width="16" height="16" viewBox="0 0 24 24" fill="#fff"><path d="M13.5 21v-8h2.7l.4-3.1h-3.1V7.9c0-.9.25-1.5 1.5-1.5h1.6V3.6c-.28-.04-1.24-.12-2.36-.12-2.33 0-3.93 1.42-3.93 4.04v2.25H7v3.1h2.81V21z"/></svg></a>
           <a class="icon-btn" href="#" title="YouTube" aria-label="YouTube"><svg width="16" height="16" viewBox="0 0 24 24" fill="#fff"><path d="M21.6 7.2s-.2-1.4-.8-2c-.76-.8-1.6-.8-2-.85C16 4.1 12 4.1 12 4.1h-.02s-4 0-6.8.25c-.4.05-1.24.05-2 .85-.6.6-.8 2-.8 2S2 8.8 2 10.5v1.6c0 1.7.2 3.3.2 3.3s.2 1.4.8 2c.76.8 1.76.78 2.2.86 1.6.16 6.8.2 6.8.2s4 0 6.8-.26c.4-.05 1.24-.05 2-.85.6-.6.8-2 .8-2s.2-1.6.2-3.3v-1.6c0-1.7-.2-3.3-.2-3.3zM9.9 14.3V8.9l5.2 2.7z"/></svg></a>
           <a class="icon-btn" href="#" title="Instagram" aria-label="Instagram"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="#fff" stroke="none"/></svg></a>
-        </div>
-        <div class="icon-cluster">
-          <button class="icon-btn" title="Saved" aria-label="Saved"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M6 4h12v16l-6-4-6 4z"/></svg></button>
-          <button class="icon-btn" title="Account" aria-label="Account"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 4-6 8-6s8 2 8 6"/></svg></button>
-          <button class="icon-btn is-blue" title="Search" aria-label="Search"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4-4"/></svg></button>
         </div>
       </div>
     </div>
@@ -499,6 +528,8 @@ const esc = (s)=>String(s==null?'':s)
   .replace(/"/g,'&quot;').replace(/'/g,'&#39;');
 
 let STATE = { items:[], fromWP:false };
+let CAT_VIEW = { name:null, shown:10 };
+const CAT_PAGE = 10;
 
 /* ---------- DYNAMIC CANONICAL + SOCIAL META ---------- */
 function setMeta(o){
@@ -508,6 +539,7 @@ function setMeta(o){
   if(o.title){ document.title = o.title; set('meta-og-title','content',o.title); set('meta-tw-title','content',o.title); }
   if(o.desc!=null){ set('meta-desc','content',o.desc); set('meta-og-desc','content',o.desc); set('meta-tw-desc','content',o.desc); }
   set('meta-canonical','href',url);
+  set('meta-robots','content', o.robots || 'index, follow, max-image-preview:large');
   set('meta-og-url','content',url);
   set('meta-og-type','content', (o.path && o.path!=='/') ? 'article' : 'website');
   if(o.image){ set('meta-og-image','content',o.image); set('meta-tw-image','content',o.image); }
@@ -515,7 +547,22 @@ function setMeta(o){
 const BASE = '/';
 const pHome = ()=> BASE;
 const pArticle = (id)=> BASE + encodeURIComponent(id);
-const pCategory = (name)=> BASE + 'category/' + encodeURIComponent(name);
+const pCategory = (name)=> BASE + String(name).trim().replace(/\s+/g,'-');
+const pContact = ()=> BASE + 'contact';
+function matchCategory(seg){
+  const norm = decodeURIComponent(String(seg)).replace(/-/g,' ').trim().toLowerCase();
+  return CATEGORIES.find(c=>c.toLowerCase()===norm) || null;
+}
+const CONTACT_TITLE = 'Contact KONE-MEDIA Africa | Get in Touch With Our Team';
+const CONTACT_DESC  = 'Get in touch with the KONE-MEDIA Africa team for news tips, story ideas, partnerships, advertising and general enquiries from across Kenya and Africa.';
+const CONTACT_EMAIL = 'konemediakenya1@gmail.com';
+
+/* ---------- Netlify form submission ---------- */
+function submitNetlifyForm(formName, data){
+  const body = new URLSearchParams(Object.assign({ 'form-name': formName }, data)).toString();
+  return fetch('/', { method:'POST', headers:{ 'Content-Type':'application/x-www-form-urlencoded' }, body });
+}
+function validEmail(s){ return /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(String(s||'').trim()); }
 
 /* ---------- SEO title (45-55) + description (145-155) fitting ---------- */
 const BRAND = 'KONE-MEDIA Africa';
@@ -697,32 +744,102 @@ function renderArticle(id){
   });
 
   const btn = document.getElementById('nl-btn');
-  if(btn) btn.addEventListener('click', ()=>{
+  if(btn) btn.addEventListener('click', async ()=>{
+    const input = document.getElementById('nl-email');
+    const email = input.value.trim();
     const note = document.getElementById('nl-note');
     note.style.display='block';
-    note.textContent = 'Thanks — newsletter sign-ups will go live once an email service is connected.';
+    if(!validEmail(email)){ note.textContent = 'Please enter a valid email address.'; return; }
+    note.textContent = 'Subscribing…';
+    try{
+      await submitNetlifyForm('newsletter', { email });
+      note.textContent = 'Thanks — you’re on the list. We’ll be in touch.';
+      input.value = '';
+    }catch(e){
+      note.textContent = 'Sorry, something went wrong. Please try again later.';
+    }
   });
 }
 
 function renderCategory(name){
-  setMeta({ title: fitTitle(name + ' News, Updates & Analysis'), desc: fitDesc(CAT_DESC[name] || (name + ' news, updates and expert analysis from KONE-MEDIA Africa.')), path: pCategory(name) });
-  const items = STATE.items.filter(a=>a.category===name);
-  $view().innerHTML = `
-  <div class="cat-head">
-    <span class="eyebrow">Category</span>
-    <h1>${esc(name)}</h1>
-    <p>${esc(CAT_DESC[name] || '')}</p>
-  </div>
-  <div class="cat-grid">
-    ${items.map(a=>`
+  CAT_VIEW = { name: name, shown: CAT_PAGE };
+  drawCategory();
+}
+function drawCategory(){
+  const name = CAT_VIEW.name;
+  setMeta({
+    title: fitTitle(name + ' News, Updates & Analysis'),
+    desc: fitDesc(CAT_DESC[name] || (name + ' news, updates and expert analysis from KONE-MEDIA Africa.')),
+    path: pCategory(name),
+    robots: 'noindex, follow'
+  });
+  const all = STATE.items.filter(a=>a.category===name);
+  const slice = all.slice(0, CAT_VIEW.shown);
+  const remaining = all.length - slice.length;
+  const cards = slice.map(a=>`
       <a class="cat-card" href="${pArticle(a.id)}">
         <img src="${esc(a.img)}" alt="" loading="lazy">
         <span class="eyebrow">${esc(a.category)}</span>
         <h3>${esc(a.title)}</h3>
         <div class="dl">${esc(a.dateLine)}</div>
         <p>${esc(a.shortExcerpt)}</p>
-      </a>`).join('') || '<p style="font-family:var(--serif);color:var(--muted);">No stories in this section yet.</p>'}
+      </a>`).join('') || '<p style="font-family:var(--serif);color:var(--muted);">No stories in this section yet.</p>';
+  $view().innerHTML = `
+  <div class="cat-head">
+    <span class="eyebrow">Category</span>
+    <h1>${esc(name)}</h1>
+    <p>${esc(CAT_DESC[name] || '')}</p>
+  </div>
+  <div class="cat-grid">${cards}</div>
+  ${remaining>0 ? `<div class="more-wrap"><button id="cat-more" class="more-btn">Show more <span class="more-count">${remaining} more</span></button></div>` : ''}`;
+  const more = document.getElementById('cat-more');
+  if(more) more.addEventListener('click', ()=>{ CAT_VIEW.shown += CAT_PAGE; drawCategory(); });
+}
+
+function renderContact(){
+  setMeta({ title: CONTACT_TITLE, desc: CONTACT_DESC, path: pContact() });
+  $view().innerHTML = `
+  <div class="cat-head">
+    <span class="eyebrow">Get in touch</span>
+    <h1>Contact KONE-MEDIA Africa</h1>
+    <p>Have a news tip, a story idea, a partnership in mind, or a question? We'd love to hear from you.</p>
+  </div>
+  <div class="contact-grid">
+    <div class="contact-info">
+      <h3>Reach us directly</h3>
+      <p class="ci-label">Email</p>
+      <p><a href="mailto:${CONTACT_EMAIL}">${CONTACT_EMAIL}</a></p>
+      <p class="ci-label">Address</p>
+      <p>Kenya House Complex,<br>Koinange Street, 5th Floor<br>Nairobi, Kenya</p>
+      <div class="foot-social" style="margin-top:18px;">
+        <a href="#" aria-label="Facebook"><svg width="15" height="15" viewBox="0 0 24 24" fill="#fff"><path d="M13.5 21v-8h2.7l.4-3.1h-3.1V7.9c0-.9.25-1.5 1.5-1.5h1.6V3.6c-.28-.04-1.24-.12-2.36-.12-2.33 0-3.93 1.42-3.93 4.04v2.25H7v3.1h2.81V21z"/></svg></a>
+        <a href="#" aria-label="YouTube"><svg width="15" height="15" viewBox="0 0 24 24" fill="#fff"><path d="M21.6 7.2s-.2-1.4-.8-2c-.76-.8-1.6-.8-2-.85C16 4.1 12 4.1 12 4.1s-4 0-6.8.25c-.4.05-1.24.05-2 .85-.6.6-.8 2-.8 2S2 8.8 2 10.5v1.6c0 1.7.2 3.3.2 3.3s.2 1.4.8 2c.76.8 1.76.78 2.2.86 1.6.16 6.8.2 6.8.2s4 0 6.8-.26c.4-.05 1.24-.05 2-.85.6-.6.8-2 .8-2s.2-1.6.2-3.3v-1.6c0-1.7-.2-3.3-.2-3.3zM9.9 14.3V8.9l5.2 2.7z"/></svg></a>
+        <a href="#" aria-label="Instagram"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="#fff" stroke="none"/></svg></a>
+      </div>
+    </div>
+    <div class="contact-form">
+      <h3>Send us a message</h3>
+      <div class="cf-row"><input id="cf-name" type="text" placeholder="Your name"></div>
+      <div class="cf-row"><input id="cf-email" type="email" placeholder="Your email"></div>
+      <div class="cf-row"><textarea id="cf-msg" rows="5" placeholder="How can we help?"></textarea></div>
+      <button id="cf-send" class="more-btn">Send message</button>
+      <div class="cf-note" id="cf-note" style="display:none;"></div>
+    </div>
   </div>`;
+  const send = document.getElementById('cf-send');
+  if(send) send.addEventListener('click', async ()=>{
+    const name = document.getElementById('cf-name').value.trim();
+    const email = document.getElementById('cf-email').value.trim();
+    const message = document.getElementById('cf-msg').value.trim();
+    const note = document.getElementById('cf-note'); note.style.display='block';
+    if(!name || !validEmail(email) || !message){ note.textContent = 'Please add your name, a valid email and a message.'; return; }
+    note.textContent = 'Sending…';
+    try{
+      await submitNetlifyForm('contact', { name, email, message });
+      note.textContent = 'Thank you — your message has been sent. We will get back to you soon.';
+      document.getElementById('cf-name').value=''; document.getElementById('cf-email').value=''; document.getElementById('cf-msg').value='';
+    }catch(e){ note.textContent = 'Sorry, something went wrong. Please email us at ' + CONTACT_EMAIL + '.'; }
+  });
 }
 
 function emptyState(){
@@ -735,15 +852,26 @@ function router(){
   window.scrollTo(0,0);
   if(!path){ renderHome(); return; }
   const parts = path.split('/');
-  if(parts[0]==='category'){ renderCategory(decodeURIComponent(parts.slice(1).join('/'))); }
-  else { renderArticle(decodeURIComponent(parts[0])); }
+  const seg = decodeURIComponent(parts[0]);
+  if(seg.toLowerCase()==='contact'){ renderContact(); return; }
+  if(parts[0]==='category'){ renderCategory(decodeURIComponent(parts.slice(1).join('/'))); return; } // legacy URLs
+  const cat = matchCategory(seg);
+  if(cat){ renderCategory(cat); return; }
+  renderArticle(seg);
 }
 
 /* ---------- BOOT ---------- */
 function fillNav(){
-  const mk = (a)=>`<a href="${pCategory(a)}">${esc(a)}</a>`;
-  document.getElementById('nav-list').innerHTML = CATEGORIES.map(c=>`<li>${mk(c)}</li>`).join('');
-  document.getElementById('foot-sections').innerHTML = CATEGORIES.map(c=>`<li>${mk(c)}</li>`).join('');
+  const navItems = [{label:'Home', href:'/'}]
+    .concat(CATEGORIES.map(c=>({label:c, href:pCategory(c)})))
+    .concat([{label:'Contact', href:pContact()}]);
+  document.getElementById('nav-list').innerHTML =
+    navItems.map(i=>`<li><a href="${i.href}">${esc(i.label)}</a></li>`).join('');
+  document.getElementById('foot-sections').innerHTML =
+    [{label:'Home',href:'/'}]
+      .concat(CATEGORIES.map(c=>({label:c,href:pCategory(c)})))
+      .concat([{label:'Contact',href:pContact()}])
+      .map(i=>`<li><a href="${i.href}">${esc(i.label)}</a></li>`).join('');
   document.getElementById('year').textContent = new Date().getFullYear();
 }
 
