@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>KONE-MEDIA Africa</title>
+<script>
+  /* GitHub Pages serves this file for any unknown path (e.g. /hello-world on a
+     direct visit or refresh). We capture the requested path, then send the
+     browser to the site root, where index.html restores it with the History
+     API so the clean URL stays in the address bar. */
+  try{
+    sessionStorage.setItem('spa-redirect', location.pathname + location.search + location.hash);
+  }catch(e){}
+  location.replace('/');
+</script>
+</head>
+<body></body>
+</html>

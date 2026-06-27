@@ -90,3 +90,15 @@ Replace the files in the `assets` folder with new ones using the **same filename
 - The **search**, **saved**, and **account** buttons and the **newsletter box** are visual placeholders. They can be wired to real services later, but they don't do anything yet.
 - The sample photos are temporary stand-ins. Once WordPress is connected, your own featured images replace them.
 - This front-end is great for speed and looks. If, down the line, search-engine ranking becomes a top priority, ask a developer about adding "pre-rendering" so each article has its own crawlable page — your content and design stay exactly the same.
+
+---
+
+## Clean URLs & SEO (added)
+
+Articles now use clean paths like `konemedia.co.ke/hello-world` (the post's WordPress slug), and every page sets its own **canonical tag**, title, and social-share tags automatically.
+
+Two extra files make this work:
+- `404.html` — lets clean links work on **GitHub Pages** (it hands the path back to the app). Keep it in the repo root.
+- `_redirects` — gives fully clean URLs with a proper 200 status if you host on **Netlify or Cloudflare Pages**. GitHub Pages ignores it; it's there for when/if you move.
+
+Note for GitHub Pages: a *direct* visit to `konemedia.co.ke/hello-world` works for people, but the server returns a 404 status for an instant before the page loads, which search engines don't love. For best SEO, host the same files on Netlify or Cloudflare Pages (free, drag-and-drop) — the `_redirects` file then serves clean URLs properly. Normal clicking between pages on the site is always clean and instant on either host.

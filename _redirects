@@ -1,0 +1,4 @@
+# If you host on Netlify or Cloudflare Pages, this serves index.html for every
+# path with a proper 200 status, giving fully clean URLs (no 404 bounce).
+# GitHub Pages ignores this file and uses 404.html instead — both are included.
+/*    /index.html   200
