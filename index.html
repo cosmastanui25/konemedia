@@ -131,6 +131,24 @@ a{ color:inherit; }
 .art-content blockquote{ border-left:3px solid var(--orange); margin:0 0 22px; padding:4px 0 4px 20px; font-style:italic; color:var(--ink2); font-size:19px; }
 .art-content ul,.art-content ol{ font-size:18px; line-height:1.72; color:var(--ink2); margin:0 0 22px; padding-left:22px; }
 .art-content a{ color:var(--blue); }
+.art-content h2{ font-size:28px; margin:30px 0 14px; }
+.art-content h3{ font-size:23px; margin:26px 0 12px; }
+/* WordPress figures / captions */
+.art-content figure{ margin:0 0 22px; }
+.art-content figcaption,.art-content .wp-element-caption{ font-family:var(--serif); font-style:italic; font-size:13px; color:var(--muted2); margin-top:6px; text-align:center; }
+/* WordPress tables (Gutenberg table block, TablePress, classic) */
+.art-content figure.wp-block-table{ margin:0 0 22px; }
+.table-scroll{ overflow-x:auto; -webkit-overflow-scrolling:touch; margin:0 0 22px; border:1px solid var(--line); border-radius:2px; }
+.table-scroll > table,.table-scroll > figure{ margin:0; border:0; }
+.art-content table{ width:100%; border-collapse:collapse; font-family:var(--serif); font-size:15.5px; background:var(--panel); }
+.art-content th,.art-content td{ border:1px solid var(--line); padding:10px 13px; text-align:left; vertical-align:top; line-height:1.55; color:var(--ink2); }
+.art-content thead th,.art-content table th[scope="col"]{ background:var(--blue); color:#fff; font-weight:600; letter-spacing:.2px; }
+.art-content tbody tr:nth-child(even){ background:#F2ECDE; }
+.art-content table caption{ font-family:var(--serif); font-style:italic; font-size:13px; color:var(--muted2); padding:8px 0; caption-side:bottom; }
+/* WordPress embeds / charts (iframes, e.g. Datawrapper, Google Sheets, YouTube) */
+.art-content figure.wp-block-embed{ margin:0 0 22px; }
+.art-content iframe,.art-content embed,.art-content object{ display:block; width:100%; max-width:100%; border:0; }
+.art-content .wp-block-image img{ margin:0; }
 .share-row{ border-top:1px solid var(--line); margin-top:14px; padding-top:18px; display:flex; gap:10px; align-items:center; }
 .share-row .lbl{ font-family:var(--serif); font-size:13px; color:#6B6760; }
 .share-ico{ width:30px; height:30px; border-radius:3px; display:inline-flex; align-items:center; justify-content:center; text-decoration:none; }
@@ -300,7 +318,7 @@ a{ color:inherit; }
    (No other change needed. See README.md.)
    ================================================================= */
 const CONFIG = {
-     WORDPRESS_URL: "https://cms.konemedia.co.ke",
+  WORDPRESS_URL: "https://cms.konemedia.co.ke",
   POSTS_TO_LOAD: 30
 };
 
@@ -579,6 +597,17 @@ function renderArticle(id){
       </div>
     </aside>
   </div>`;
+
+  // Make wide tables (and table figures) scroll sideways on small screens
+  document.querySelectorAll('.art-content table').forEach(function(tbl){
+    const host = (tbl.parentElement && tbl.parentElement.classList.contains('wp-block-table'))
+      ? tbl.parentElement : tbl;
+    if(host.parentElement && host.parentElement.classList.contains('table-scroll')) return;
+    const wrap = document.createElement('div');
+    wrap.className = 'table-scroll';
+    host.parentNode.insertBefore(wrap, host);
+    wrap.appendChild(host);
+  });
 
   const btn = document.getElementById('nl-btn');
   if(btn) btn.addEventListener('click', ()=>{
