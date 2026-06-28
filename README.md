@@ -137,3 +137,15 @@ Speed optimizations (no visual or functional change):
 - **Asset caching** — logos/favicon cached for a week via `netlify.toml`.
 
 Netlify already serves everything over HTTP/2 with Brotli/gzip compression and a global CDN, so no extra setup is needed. After deploying, you can check the score at pagespeed.web.dev.
+
+---
+
+## Update: sitemap now includes everything
+
+The sitemap at `https://konemedia.co.ke/sitemap.xml` now lists:
+- the **homepage** (priority 1.0)
+- all **category** pages (e.g. /Business, /Top-10) — these are now **indexable** (the earlier noindex was removed so the sitemap and indexing agree)
+- the **contact** page
+- every published **post**
+
+It still regenerates live (12-hour cache) and uses each post's real `lastmod` date. Tags remain the only thing not exposed as pages. If you later want categories kept out of Google again, tell me and I'll re-add noindex to them and drop them from the sitemap.

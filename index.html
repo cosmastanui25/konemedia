@@ -789,8 +789,7 @@ function drawCategory(){
   setMeta({
     title: fitTitle(name + ' News, Updates & Analysis'),
     desc: fitDesc(CAT_DESC[name] || (name + ' news, updates and expert analysis from KONE-MEDIA Africa.')),
-    path: pCategory(name),
-    robots: 'noindex, follow'
+    path: pCategory(name)
   });
   const all = STATE.items.filter(a=>a.category===name);
   const slice = all.slice(0, CAT_VIEW.shown);

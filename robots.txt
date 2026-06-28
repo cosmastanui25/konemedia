@@ -1,6 +1,6 @@
 # KONE-MEDIA Africa — robots.txt
-# Posts are indexable. Category pages are set to noindex via a meta tag
-# (so crawlers can still follow links through them but won't index them).
+# Posts, categories, the homepage and the contact page are all indexable
+# and listed in the sitemap. Tags are not exposed as pages.
 
 User-agent: *
 Allow: /
