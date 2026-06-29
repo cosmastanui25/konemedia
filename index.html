@@ -565,7 +565,7 @@ function setMeta(o){
 }
 const BASE = '/';
 const pHome = ()=> BASE;
-const pArticle = (id)=> BASE + encodeURIComponent(id);
+const pArticle = (id)=> BASE + encodeURIComponent(id) + '/';
 const pCategory = (name)=> BASE + String(name).trim().replace(/\s+/g,'-');
 const pContact = ()=> BASE + 'contact';
 function matchCategory(seg){

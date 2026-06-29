@@ -47,7 +47,7 @@ exports.handler = async function () {
     );
     entries.push(urlTag(`${SITE}/contact`, now, "monthly", "0.3"));                 // contact
     posts.filter((p) => p && p.slug).forEach((p) =>                                 // posts
-      entries.push(urlTag(`${SITE}/${encodeURIComponent(p.slug)}`,
+      entries.push(urlTag(`${SITE}/${encodeURIComponent(p.slug)}/`,
         p.modified ? new Date(p.modified).toISOString() : now, "daily", "0.8"))
     );
 
