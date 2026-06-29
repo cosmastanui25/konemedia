@@ -2,6 +2,11 @@
   publish = "."
   functions = "netlify/functions"
 
+# Rewrites the canonical/og:url in the raw HTML to match each URL.
+[[edge_functions]]
+  path = "/*"
+  function = "canonical"
+
 # Cache static assets aggressively (logos, favicon). They rarely change;
 # if you replace one, redeploy and Netlify serves the new file.
 [[headers]]

@@ -149,3 +149,17 @@ The sitemap at `https://konemedia.co.ke/sitemap.xml` now lists:
 - every published **post**
 
 It still regenerates live (12-hour cache) and uses each post's real `lastmod` date. Tags remain the only thing not exposed as pages. If you later want categories kept out of Google again, tell me and I'll re-add noindex to them and drop them from the sitemap.
+
+---
+
+## Update: correct canonical in raw page source
+
+A Netlify **edge function** (`netlify/edge-functions/canonical.js`, enabled in `netlify.toml`)
+rewrites the `<link rel="canonical">` and `og:url` in the HTML *as the page is served*, so the
+**raw source** (view-source / SEO crawlers that don't run JavaScript) shows each page's own URL
+instead of the homepage. It follows the same URL rules as the site: trailing slash on all posts,
+no slash on the one exception post, no slash on categories/contact. To change the exception later,
+edit the `NO_TRAILING_SLASH` set in BOTH `index.html` and the two files under `netlify/`.
+
+IMPORTANT: when deploying, upload the whole `netlify/` folder (it now contains `functions/` and
+`edge-functions/`) plus `netlify.toml`, or the canonical fix won't activate.
