@@ -565,7 +565,9 @@ function setMeta(o){
 }
 const BASE = '/';
 const pHome = ()=> BASE;
-const pArticle = (id)=> BASE + encodeURIComponent(id) + '/';
+// Posts listed here use NO trailing slash. Everything else keeps the trailing slash.
+const NO_TRAILING_SLASH = new Set(['best-sites-to-play-aviator-in-kenya-a-ranked-comparison']);
+const pArticle = (id)=> BASE + encodeURIComponent(id) + (NO_TRAILING_SLASH.has(id) ? '' : '/');
 const pCategory = (name)=> BASE + String(name).trim().replace(/\s+/g,'-');
 const pContact = ()=> BASE + 'contact';
 function matchCategory(seg){

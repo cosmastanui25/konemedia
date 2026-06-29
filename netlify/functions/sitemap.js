@@ -6,6 +6,8 @@ const SITE = "https://konemedia.co.ke";
 const WP   = "https://cms.konemedia.co.ke";
 // Must match the categories used by the site's menu/router.
 const CATEGORIES = ["Sports", "Business", "Finance", "Health", "Technology", "AI", "Guides", "Top 10"];
+// Posts here use NO trailing slash; all other posts keep the trailing slash.
+const NO_TRAILING_SLASH = new Set(["best-sites-to-play-aviator-in-kenya-a-ranked-comparison"]);
 
 function urlTag(loc, lastmod, changefreq, priority) {
   return `  <url>\n    <loc>${loc}</loc>\n    <lastmod>${lastmod}</lastmod>\n    <changefreq>${changefreq}</changefreq>\n    <priority>${priority}</priority>\n  </url>`;
@@ -46,10 +48,11 @@ exports.handler = async function () {
       entries.push(urlTag(`${SITE}${encodeURI(catPath(c))}`, siteLastmod, "daily", "0.6"))
     );
     entries.push(urlTag(`${SITE}/contact`, now, "monthly", "0.3"));                 // contact
-    posts.filter((p) => p && p.slug).forEach((p) =>                                 // posts
-      entries.push(urlTag(`${SITE}/${encodeURIComponent(p.slug)}/`,
-        p.modified ? new Date(p.modified).toISOString() : now, "daily", "0.8"))
-    );
+    posts.filter((p) => p && p.slug).forEach((p) => {                               // posts
+      const slash = NO_TRAILING_SLASH.has(p.slug) ? "" : "/";
+      entries.push(urlTag(`${SITE}/${encodeURIComponent(p.slug)}${slash}`,
+        p.modified ? new Date(p.modified).toISOString() : now, "daily", "0.8"));
+    });
 
     return {
       statusCode: 200,
