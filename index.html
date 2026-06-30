@@ -390,68 +390,7 @@ const CAT_DESC = {
   'Top 10':'Curated rankings of the people, places and companies that matter.'
 };
 
-/* ---------- SAMPLE CONTENT (placeholder — replace via WordPress) ---------- */
-const SAMPLE_RAW = [
-  // SPORTS
-  ['Harambee Stars Edge Closer to AFCON Qualification After Win in Nairobi','Sports','Brian Otieno','Jun 26, 2026','A late header at Kasarani sealed a crucial victory, lifting Kenya into a strong position in the qualifying group.','sport1'],
-  ['Faith Kipyegon Sets Sights on Fourth 1500m World Title','Sports','Grace Achieng','Jun 25, 2026','The world record holder says she is in the best shape of her career as the global season approaches.','sport2'],
-  ['Gor Mahia Reclaim Top Spot in FKF Premier League Title Race','Sports','Brian Otieno','Jun 24, 2026','A commanding home performance has put the Nairobi giants back in control with weeks left in the season.','sport3'],
-  ['Kenya Names Strong Squad for World Athletics Relays','Sports','Grace Achieng','Jun 23, 2026','Selectors have named a blend of seasoned champions and rising talent for the upcoming championships.','sport4'],
-  // BUSINESS
-  ['Safaricom Posts Record Half-Year Profit as M-Pesa Revenue Climbs','Business','Wanjiru Kamau','Jun 26, 2026','The telco reported double-digit growth as mobile money and data services continued to drive earnings across the region.','biz1'],
-  ['Nairobi Securities Exchange Rallies on Renewed Foreign Investor Interest','Business','David Mwangi','Jun 25, 2026','The bourse posted its strongest week in months as overseas funds returned to blue-chip counters.','biz2'],
-  ['Kenya’s Tea Exports Hit Five-Year High Amid Strong Global Demand','Business','Wanjiru Kamau','Jun 24, 2026','Favourable weather and new markets have pushed export volumes to levels not seen since 2021.','biz3'],
-  ['EABL Expands Production Capacity with New Plant in Kisumu','Business','David Mwangi','Jun 22, 2026','The brewer says the multi-billion shilling investment will create jobs and serve growing regional demand.','biz4'],
-  // FINANCE
-  ['Central Bank Holds Benchmark Rate as Inflation Eases to 4.1%','Finance','David Mwangi','Jun 26, 2026','The monetary policy committee opted to keep rates steady, citing a stable shilling and cooling prices.','fin1'],
-  ['Shilling Steadies Against the Dollar After IMF Disbursement','Finance','Wanjiru Kamau','Jun 24, 2026','A fresh tranche of funding has eased pressure on the currency and boosted market confidence.','fin2'],
-  ['Treasury Unveils Plan to Widen Tax Base in 2026/27 Budget','Finance','David Mwangi','Jun 21, 2026','Officials say the measures aim to ease the burden on existing taxpayers while funding key services.','fin3'],
-  // HEALTH
-  ['Kenya Rolls Out Malaria Vaccine to 25 More Counties','Health','Amina Hassan','Jun 25, 2026','Health officials hailed the expansion as a major step in the fight against one of the country’s biggest killers.','hea1'],
-  ['Nairobi Hospitals Adopt AI Tools to Cut Diagnosis Wait Times','Health','Amina Hassan','Jun 23, 2026','Several facilities are piloting software that helps clinicians read scans faster and more accurately.','hea2'],
-  ['Mental Health Services Get Boost Under New UHC Framework','Health','Grace Achieng','Jun 20, 2026','Counselling and treatment will be integrated into primary care under the latest health reforms.','hea3'],
-  // TECHNOLOGY
-  ['Kenyan Startups Raise $640M in 2025, Leading East Africa','Technology','Samuel Kiprono','Jun 26, 2026','Fintech and climate ventures dominated funding as investors doubled down on the region’s talent.','tec1'],
-  ['Konza Technopolis Signs Deal to Host New Data Centre','Technology','Samuel Kiprono','Jun 24, 2026','The facility is expected to strengthen the country’s position as a regional digital hub.','tec2'],
-  ['Internet Speeds Surge as New Undersea Cable Lands in Mombasa','Technology','Samuel Kiprono','Jun 22, 2026','The cable promises faster, cheaper connectivity for millions of users across the coast and beyond.','tec3'],
-  // AI
-  ['How African Newsrooms Are Using AI to Fact-Check in Real Time','AI','Samuel Kiprono','Jun 26, 2026','Editors say new tools are helping verify claims faster, but warn that human judgement remains essential.','ai1'],
-  ['Kenyan Researchers Build Swahili Language Model for Local Apps','AI','Amina Hassan','Jun 25, 2026','The open model aims to make voice and text technology work better for millions of Swahili speakers.','ai2'],
-  ['Nairobi Hosts Africa’s Largest AI Summit as Investment Pours In','AI','Wanjiru Kamau','Jun 23, 2026','Founders, policymakers and investors gathered to chart a homegrown path for artificial intelligence.','ai3'],
-  // GUIDES
-  ['A Beginner’s Guide to Investing in the Nairobi Securities Exchange','Guides','David Mwangi','Jun 24, 2026','Everything a first-time investor needs to know before buying shares, from opening a CDS account to managing risk.','gui1'],
-  ['How to Register a Business in Kenya: Step-by-Step for 2026','Guides','Wanjiru Kamau','Jun 22, 2026','A practical walkthrough of the eCitizen process, costs and documents you need to start trading legally.','gui2'],
-  ['Saving with SACCOs: What You Need to Know Before You Join','Guides','Grace Achieng','Jun 19, 2026','We break down how SACCOs work, the benefits, and the questions to ask before committing your money.','gui3'],
-  // TOP 10
-  ['Top 10 Fastest-Growing Companies in Kenya Right Now','Top 10','Wanjiru Kamau','Jun 25, 2026','From fintech disruptors to agribusiness pioneers, these firms are scaling faster than anyone else.','top1'],
-  ['Top 10 Tech Hubs Shaping Africa’s Startup Scene','Top 10','Samuel Kiprono','Jun 23, 2026','The cities and spaces where the continent’s next generation of founders are building the future.','top2'],
-  ['Top 10 Destinations Driving Kenya’s Tourism Recovery','Top 10','Grace Achieng','Jun 21, 2026','Coast, savannah and city breaks are pulling record numbers of visitors back to the country.','top3']
-];
-
-const sampleImg = (s)=>`https://picsum.photos/seed/${s}/900/600`;
-const sampleBody = (a)=>
-  `<p>NAIROBI — ${a.excerpt}</p>`+
-  `<p>The development comes amid growing attention to the sector, with analysts pointing to a combination of policy shifts, private investment and changing consumer behaviour as the key forces behind the trend.</p>`+
-  `<p>Speaking to KONE-MEDIA, several industry stakeholders said the changes were already being felt on the ground, and urged regulators to provide clearer guidelines so the momentum can be sustained into the second half of the year.</p>`+
-  `<blockquote>“What we are seeing is a structural change, not a short-term spike. The organisations that adapt quickly will be the ones that define the next phase of growth across the region.”</blockquote>`+
-  `<p>Observers say the coming months will be decisive. With regional integration, global market conditions and shifting demand all in play, the story is far from over — and KONE-MEDIA will continue to follow it closely.</p>`;
-
-function buildSample(){
-  return SAMPLE_RAW.map((r,i)=>{
-    const a = {
-      id:slugify(r[0]), title:r[0], category:r[1], author:r[2],
-      date:r[3], dateLine:r[3], excerpt:r[4],
-      img:sampleImg(r[5]),
-      imgCard:`https://picsum.photos/seed/${r[5]}/600/400`,
-      imgThumb:`https://picsum.photos/seed/${r[5]}/240/180`,
-      shortExcerpt: r[4].length>92 ? r[4].slice(0,90).trim()+'…' : r[4],
-      readTime:'5 min read', caption:`${r[1]} · KONE-MEDIA Africa`,
-      tags:[]
-    };
-    a.bodyHtml = sampleBody(a);
-    return a;
-  });
-}
+/* ---------- (demo/sample content removed — site is live from WordPress only) ---------- */
 
 /* ---------- helpers ---------- */
 function slugify(s){
@@ -477,43 +416,77 @@ function readTimeFromHtml(html){
 }
 // Pick appropriately-sized image variants so we never download a huge full-size
 // photo for a small card. Falls back gracefully when sizes are missing.
-function mediaUrls(media, seed){
+function mediaUrls(media){
   const full = media && media.source_url;
   const sizes = (media && media.media_details && media.media_details.sizes) || {};
   const pick = (...keys)=>{ for(const k of keys){ if(sizes[k] && sizes[k].source_url) return sizes[k].source_url; } return null; };
   const large = pick('large','medium_large','1536x1536') || full;
   const card  = pick('medium_large','medium','large') || large || full;
   const thumb = pick('medium','thumbnail') || card || full;
-  const fb = 'https://picsum.photos/seed/'+seed+'/900/600';
+  // neutral on-brand placeholder (no external request) when a post has no image
+  const fb = 'data:image/svg+xml;charset=utf-8,'+encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="16" height="10"><rect width="16" height="10" fill="#e9e3d6"/></svg>');
   return { img: large || fb, imgCard: card || fb, imgThumb: thumb || fb };
 }
+
+// Turn one WordPress REST post object into the shape the UI uses.
+function mapPost(p){
+  const emb = p._embedded || {};
+  const media = emb['wp:featuredmedia'] && emb['wp:featuredmedia'][0];
+  const terms = emb['wp:term'] || [];
+  const catTerm = (terms[0] || []).find(t=>t.taxonomy==='category');
+  const tagNames = (terms[1] || []).map(t=>(t.slug||t.name||'').toLowerCase());
+  const author = emb.author && emb.author[0] ? emb.author[0].name : 'KONE-MEDIA';
+  const category = catTerm ? catTerm.name : 'News';
+  const excerpt = stripHtml(p.excerpt && p.excerpt.rendered);
+  const m = mediaUrls(media);
+  return {
+    id: (p.slug && p.slug.length) ? p.slug : String(p.id), postId: p.id,
+    title:stripHtml(p.title && p.title.rendered), category, author,
+    date:fmtDate(p.date), dateLine:fmtDate(p.date), excerpt,
+    shortExcerpt: excerpt.length>92 ? excerpt.slice(0,90).trim()+'…' : excerpt,
+    img: m.img, imgCard: m.imgCard, imgThumb: m.imgThumb, caption:`${category} · KONE-MEDIA Africa`,
+    readTime: readTimeFromHtml(p.content && p.content.rendered),
+    bodyHtml: (p.content && p.content.rendered) || `<p>${excerpt}</p>`,
+    tags: tagNames
+  };
+}
+
+// fetch JSON with a timeout and one retry, so a slow/flaky network doesn't
+// instantly fail (which is what was making some visitors fall back to nothing).
+async function fetchJSON(url, tries){
+  tries = tries || 2;
+  for(let i=0;i<tries;i++){
+    try{
+      const ctrl = new AbortController();
+      const t = setTimeout(()=>ctrl.abort(), 9000);
+      const res = await fetch(url, { signal: ctrl.signal });
+      clearTimeout(t);
+      if(!res.ok) throw new Error('WordPress responded with '+res.status);
+      return await res.json();
+    }catch(e){
+      if(i === tries-1) throw e;
+      await new Promise(r=>setTimeout(r, 1200)); // brief backoff, then retry
+    }
+  }
+}
+
 async function buildFromWordPress(){
   const base = CONFIG.WORDPRESS_URL.replace(/\/+$/,'');
   const url = `${base}/wp-json/wp/v2/posts?_embed&per_page=${CONFIG.POSTS_TO_LOAD}&orderby=date`;
-  const res = await fetch(url);
-  if(!res.ok) throw new Error('WordPress responded with '+res.status);
-  const posts = await res.json();
-  return posts.map(p=>{
-    const emb = p._embedded || {};
-    const media = emb['wp:featuredmedia'] && emb['wp:featuredmedia'][0];
-    const terms = emb['wp:term'] || [];
-    const catTerm = (terms[0] || []).find(t=>t.taxonomy==='category');
-    const tagNames = (terms[1] || []).map(t=>(t.slug||t.name||'').toLowerCase());
-    const author = emb.author && emb.author[0] ? emb.author[0].name : 'KONE-MEDIA';
-    const category = catTerm ? catTerm.name : 'News';
-    const excerpt = stripHtml(p.excerpt && p.excerpt.rendered);
-    const m = mediaUrls(media, p.id);
-    return {
-      id: (p.slug && p.slug.length) ? p.slug : String(p.id), postId: p.id,
-      title:stripHtml(p.title && p.title.rendered), category, author,
-      date:fmtDate(p.date), dateLine:fmtDate(p.date), excerpt,
-      shortExcerpt: excerpt.length>92 ? excerpt.slice(0,90).trim()+'…' : excerpt,
-      img: m.img, imgCard: m.imgCard, imgThumb: m.imgThumb, caption:`${category} · KONE-MEDIA Africa`,
-      readTime: readTimeFromHtml(p.content && p.content.rendered),
-      bodyHtml: (p.content && p.content.rendered) || `<p>${excerpt}</p>`,
-      tags: tagNames
-    };
-  });
+  const posts = await fetchJSON(url);
+  return (posts || []).map(mapPost);
+}
+
+// Load ONE post directly by its slug — used when a visitor opens a genuine
+// article link that isn't in the already-loaded list (e.g. an older post).
+async function fetchPostBySlug(slug){
+  try{
+    const base = CONFIG.WORDPRESS_URL.replace(/\/+$/,'');
+    const url = `${base}/wp-json/wp/v2/posts?slug=${encodeURIComponent(slug)}&_embed`;
+    const posts = await fetchJSON(url, 2);
+    if(posts && posts.length) return mapPost(posts[0]);
+  }catch(e){}
+  return null;
 }
 
 /* ---------- HOME LAYOUT SELECTION ---------- */
@@ -521,20 +494,13 @@ function buildHome(items, fromWP){
   const byCat = (c)=> items.filter(a=>a.category===c);
   let latest, secondary, featured, trending;
 
-  if(!fromWP && items.length>=26){
-    // exact curated layout that matches the original mockup
-    latest    = items[4];
-    secondary = [items[17], items[14], items[11]];
-    featured  = [items[19], items[8], items[1], items[15], items[23]];
-    trending  = [items[4], items[14], items[0], items[8], items[17], items[11], items[5], items[1], items[15], items[23]];
-  }else{
-    // live WordPress: fill automatically from real posts
-    latest    = items[0];
-    secondary = items.slice(1,4);
-    const tagged = items.filter(a=>a.tags && a.tags.includes('featured'));
-    featured  = (tagged.length ? tagged : items).slice(0,5);
-    trending  = items.slice(0,10);
-  }
+  // live WordPress: fill automatically from real posts
+  latest    = items[0];
+  secondary = items.slice(1,4);
+  const tagged = items.filter(a=>a.tags && a.tags.includes('featured'));
+  featured  = (tagged.length ? tagged : items).slice(0,5);
+  trending  = items.slice(0,10);
+
   const sports   = byCat('Sports').slice(0,4);
   const business = byCat('Business').filter(a=>!latest || a.id!==latest.id).slice(0,4);
   return { latest, secondary, sports, business, featured, trending };
@@ -546,7 +512,7 @@ const esc = (s)=>String(s==null?'':s)
   .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
   .replace(/"/g,'&quot;').replace(/'/g,'&#39;');
 
-let STATE = { items:[], fromWP:false };
+let STATE = { items:[], fromWP:false, loadError:false };
 let CAT_VIEW = { name:null, shown:10 };
 const CAT_PAGE = 10;
 
@@ -622,6 +588,7 @@ function fitDesc(base){
 
 function renderHome(){
   setMeta({ title: HOME_TITLE, desc: HOME_DESC, path:'/' });
+  if(!STATE.items.length){ $view().innerHTML = stateBlock(STATE.loadError ? 'error' : 'loading'); return; }
   const h = buildHome(STATE.items, STATE.fromWP);
   if(!h.latest){ $view().innerHTML = emptyState(); return; }
 
@@ -706,9 +673,16 @@ function renderHome(){
   </section>`;
 }
 
-function renderArticle(id){
-  const art = STATE.items.find(a=>a.id===id);
-  if(!art){ try{ history.replaceState(null,'', pHome()); }catch(e){} renderHome(); return; }
+async function renderArticle(id){
+  let art = STATE.items.find(a=>a.id===id);
+  if(!art){
+    // Not in the loaded list (e.g. an older post, or the list hasn't loaded yet).
+    // Load this exact post straight from WordPress so genuine links always work.
+    $view().innerHTML = stateBlock('loading');
+    art = await fetchPostBySlug(id);
+    if(art && !STATE.items.some(a=>a.id===art.id)) STATE.items.push(art);
+  }
+  if(!art){ $view().innerHTML = stateBlock('notfound'); return; }
   setMeta({ title: fitTitle(art.title), desc: fitDesc(art.excerpt || art.title), path: pArticle(art.id), image: art.img });
   const related = STATE.items.filter(a=>a.category===art.category && a.id!==art.id).slice(0,4);
 
@@ -794,6 +768,7 @@ function drawCategory(){
     path: pCategory(name)
   });
   const all = STATE.items.filter(a=>a.category===name);
+  if(!STATE.items.length){ $view().innerHTML = stateBlock(STATE.loadError ? 'error' : 'loading'); return; }
   const slice = all.slice(0, CAT_VIEW.shown);
   const remaining = all.length - slice.length;
   const cards = slice.map(a=>`
@@ -863,7 +838,25 @@ function renderContact(){
 }
 
 function emptyState(){
-  return `<div class="state">No stories to show yet. Publish your first post in WordPress and it will appear here.</div>`;
+  return stateBlock('empty');
+}
+function stateBlock(kind){
+  const s = 'font-family:var(--serif);color:var(--ink2);text-align:center;padding:60px 20px;line-height:1.7;';
+  const btn = 'display:inline-block;margin-top:14px;background:var(--orange);color:#fff;border:none;border-radius:4px;padding:10px 20px;font-family:var(--serif);font-weight:600;cursor:pointer;';
+  if(kind==='loading') return `<div class="state" style="${s}">Loading stories…</div>`;
+  if(kind==='error')   return `<div class="state" style="${s}">We couldn't load the latest stories right now.<br>Please check your connection and try again.<br><button style="${btn}" onclick="retryLoad()">Try again</button></div>`;
+  if(kind==='notfound')return `<div class="state" style="${s}">Sorry — that article could not be found.<br><a href="/" style="color:var(--orange);font-weight:600;">← Back to home</a></div>`;
+  return `<div class="state" style="${s}">No stories to show yet. Publish your first post in WordPress and it will appear here.</div>`;
+}
+// Re-attempt loading the post list (used by the "Try again" button).
+async function retryLoad(){
+  $view().innerHTML = stateBlock('loading');
+  try{
+    const fresh = await buildFromWordPress();
+    if(fresh && fresh.length){ STATE.items = fresh; STATE.fromWP = true; STATE.loadError = false; writeCache(fresh); }
+    else { STATE.loadError = true; }
+  }catch(e){ STATE.loadError = true; }
+  router();
 }
 
 /* ---------- ROUTER (clean paths, e.g. /hello-world) ---------- */
@@ -878,6 +871,18 @@ function router(){
   const cat = matchCategory(seg);
   if(cat){ renderCategory(cat); return; }
   renderArticle(seg);
+}
+
+// True for views that depend on the full post list (home, category) — used to
+// decide whether a background list refresh should re-render the current view.
+function isListView(){
+  const path = location.pathname.replace(/^\/+|\/+$/g,'');
+  if(!path) return true;
+  const parts = path.split('/');
+  const seg = decodeURIComponent(parts[0]);
+  if(seg.toLowerCase()==='contact') return false;
+  if(parts[0]==='category') return true;
+  return !!matchCategory(seg);
 }
 
 /* ---------- BOOT ---------- */
@@ -910,7 +915,7 @@ async function boot(){
   fillNav();
 
   const hasWP = CONFIG.WORDPRESS_URL && CONFIG.WORDPRESS_URL.trim();
-  if(!hasWP){ STATE.items = buildSample(); router(); return; }
+  if(!hasWP){ STATE.items = []; router(); return; }
 
   const cached = readCache();
   if(cached){
@@ -922,23 +927,26 @@ async function boot(){
         writeCache(fresh);
         if(sig(fresh) !== sig(cached)){
           STATE.items = fresh;
-          if(window.scrollY < 200) router();   // only re-render if the reader is near the top
+          // only re-render list views (home/category); never disrupt an open article
+          if(isListView() && window.scrollY < 200) router();
         }
       }
     }).catch(()=>{});
     return;
   }
 
-  // first visit (no cache): fetch, then render
+  // first visit (no cache): render the requested view immediately
+  // (an article will fetch itself by slug), then load the list.
+  router();
   try{
     const fresh = await buildFromWordPress();
-    if(fresh && fresh.length){ STATE.items = fresh; STATE.fromWP = true; writeCache(fresh); }
-    else { STATE.items = buildSample(); }
+    if(fresh && fresh.length){ STATE.items = fresh; STATE.fromWP = true; STATE.loadError = false; writeCache(fresh); }
+    else { STATE.loadError = true; }
   }catch(err){
-    console.warn('Could not load from WordPress, showing sample content:', err);
-    STATE.items = buildSample(); STATE.fromWP = false;
+    console.warn('Could not load the post list:', err);
+    STATE.loadError = true;
   }
-  router();
+  if(isListView()) router(); // refresh home/category once the list is in
 }
 
 // Intercept internal link clicks so navigation stays single-page with clean URLs

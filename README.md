@@ -163,3 +163,17 @@ edit the `NO_TRAILING_SLASH` set in BOTH `index.html` and the two files under `n
 
 IMPORTANT: when deploying, upload the whole `netlify/` folder (it now contains `functions/` and
 `edge-functions/`) plus `netlify.toml`, or the canonical fix won't activate.
+
+---
+
+## Update: removed demo content + resilient loading
+
+- The built-in **demo/sample posts were removed entirely**. The site now shows ONLY real
+  WordPress content. If WordPress can't be reached, visitors see a "Try again" message —
+  never fake articles.
+- **Genuine article links always resolve.** Opening any post URL now loads that exact post
+  directly from WordPress (even older posts not in the latest batch, and even if the homepage
+  list is slow), so links no longer bounce to the homepage.
+- Network requests now have a timeout + one automatic retry for flaky connections.
+- Unknown URLs show a proper "article not found" page with a link home, instead of silently
+  redirecting.
