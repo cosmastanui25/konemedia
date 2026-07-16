@@ -1,14 +1,11 @@
 [build]
-  publish = "."
-  functions = "netlify/functions"
+  command = "node build.mjs"
+  publish = "dist"
 
-# Rewrites the canonical/og:url in the raw HTML to match each URL.
-[[edge_functions]]
-  path = "/*"
-  function = "canonical"
+[build.environment]
+  NODE_VERSION = "20"
 
-# Cache static assets aggressively (logos, favicon). They rarely change;
-# if you replace one, redeploy and Netlify serves the new file.
+# Long-cache static assets (logos, js). A rebuild publishes fresh copies.
 [[headers]]
   for = "/assets/*"
   [headers.values]
