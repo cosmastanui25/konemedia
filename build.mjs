@@ -100,6 +100,20 @@ function wrapTables(html){
 
 /* ---------------- URL paths (trailing-slash rules preserved) ---------------- */
 const pArticle  = (id)=> '/' + encodeURIComponent(id) + (NO_TRAILING_SLASH.has(id) ? '' : '/');
+
+// Rewrite in-content links that point at the WordPress origin (cms.konemedia.co.ke)
+// to the public front-end. Only rewrites links to posts we actually built (and the
+// site root). Leaves images, files (/wp-*), feeds, and unknown pages untouched.
+function rewriteInternalLinks(html, slugSet){
+  if(!html) return html;
+  return html.replace(/href="https?:\/\/cms\.konemedia\.co\.ke(\/[^"]*)?"/gi, (m, path)=>{
+    if(!path || path === '/') return 'href="/"';                 // WP home -> site home
+    if(/^\/(wp-|feed|xmlrpc|author\/|tag\/|category\/)/i.test(path)) return m; // system/asset/archive
+    const seg = path.replace(/^\//,'').replace(/[?#].*$/,'').replace(/\/$/,'');
+    if(seg && !seg.includes('/') && slugSet.has(seg)) return `href="${pArticle(seg)}"`;
+    return m;                                                     // unknown page -> leave as-is
+  });
+}
 const pCategory = (name)=> '/' + String(name).trim().replace(/\s+/g,'-');
 const pContact  = ()=> '/contact';
 
@@ -226,6 +240,8 @@ function homeBody(items){
 function articleBody(art, items){
   // "More in {category}" — up to 10, newest first (items are already newest-first)
   const related = items.filter(a=>a.category===art.category && a.id!==art.id).slice(0,10);
+  const slugSet = new Set(items.map(a=>a.id));
+  const bodyHtml = rewriteInternalLinks(art.bodyHtml || '', slugSet);
   return `
   <a class="backlink" href="/">← Back to home</a>
   <div class="article-grid">
@@ -239,7 +255,7 @@ function articleBody(art, items){
       </div>
       <img class="art-cover" src="${escAttr(art.img)}" alt="" fetchpriority="high" decoding="async">
       <div class="art-caption">${esc(art.caption)}</div>
-      <div class="art-content">${art.bodyHtml || ''}</div>
+      <div class="art-content">${bodyHtml}</div>
       <div class="share-row">
         <span class="lbl">Share:</span>
         <a class="share-ico" style="background:var(--orange)" href="https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(SITE+pArticle(art.id))}" target="_blank" rel="noopener" aria-label="Share on Facebook"><svg width="14" height="14" viewBox="0 0 24 24" fill="#fff"><path d="M13.5 21v-8h2.7l.4-3.1h-3.1V7.9c0-.9.25-1.5 1.5-1.5h1.6V3.6c-.28-.04-1.24-.12-2.36-.12-2.33 0-3.93 1.42-3.93 4.04v2.25H7v3.1h2.81V21z"/></svg></a>
