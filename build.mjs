@@ -356,8 +356,10 @@ function applyChrome(tpl){
     .replace('<ul id="nav-list"></ul>', `<ul id="nav-list">${navHtml()}</ul>`)
     .replace('<ul class="foot-sections" id="foot-sections"></ul>', `<ul class="foot-sections" id="foot-sections">${navHtml()}</ul>`)
     .replace('<span id="year"></span>', `<span id="year">${new Date().getFullYear()}</span>`)
-    // swap the big single-page script for the small enhancement script
-    .replace(/<script>[\s\S]*<\/script>/, '<script src="/assets/app.js" defer></script>');
+    // swap the big single-page script for the small enhancement script.
+    // Match ONLY the last <script> (negative lookahead: no further <script ahead),
+    // so other head scripts like Google Tag Manager are left untouched.
+    .replace(/<script>(?![\s\S]*<script)[\s\S]*?<\/script>/, '<script src="/assets/app.js" defer></script>');
 }
 function setAttr(html, id, attr, value){
   const re = new RegExp(`(<[^>]*\\bid="${id}"[^>]*\\b${attr}=")[^"]*(")`);
