@@ -500,6 +500,7 @@ async function main(){
   // sitemap, robots, redirects, assets
   await writeFile('sitemap.xml', sitemap(items));
   await copyIfExists('robots.txt', 'robots.txt');
+  await writeFile('ads.txt', 'google.com, pub-5138037700332193, DIRECT, f08c47fec0942fa0\n');
   await writeFile('_redirects', '/category/*    /:splat    301\n');
   await copyDir('assets', 'assets');
 
